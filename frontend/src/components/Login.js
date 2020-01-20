@@ -5,7 +5,7 @@ function Login()
 	const doLogin = async event =>
 	{
 		event.preventDefault();
-		alert('Leinecker: "Please don\'t use javascript alerts."');
+		alert('A thing happened.');
 	};
 
 	return (
