@@ -5,6 +5,6 @@ files:
     destination: /var/www/ContactManagerDeployment/
 hooks:
   AfterInstall:
-    - location: /var/www/ContactManagerApp/build_reactjs.sh
+    - location: build_reactjs.sh
       timeout: 60
       runas: root
