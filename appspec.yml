@@ -3,7 +3,6 @@ os: linux
 files:
   - source: /
     destination: /var/www/ContactManagerMERN/
-    overwrite: true
 hooks:
   AfterInstall:
     - location: /var/www/ContactManagerMERN/build_reactjs.sh
