@@ -3,7 +3,7 @@ import React from 'react';
 function PageTitle()
 {
 	return (
-		<h1 id="title">DECJOB MERN</h1>
+		<h1 id="title">CONTACT MANAGER MERN TEST</h1>
 	);
 };
 
