@@ -2,9 +2,9 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /var/www/ContactManagerMERN/
+    destination: /var/www/ContactManagerDeployment/
 hooks:
   AfterInstall:
-    - location: /var/www/ContactManagerMERN/build_reactjs.sh
+    - location: /var/www/ContactManagerApp/build_reactjs.sh
       timeout: 60
       runas: root
