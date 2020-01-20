@@ -1,8 +1,0 @@
-/node_modules
-package-lock.json
-
-/frontend/build
-/frontend/node_modules
-/frontend/package-lock.json
-
-build_reactjs.sh
