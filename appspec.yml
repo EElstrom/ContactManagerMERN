@@ -7,5 +7,5 @@ files:
 hooks:
   AfterInstall:
     - location: /var/www/ContactManagerMERN/build_reactjs.sh
-      timeout: 60
+      timeout: 30
       runas: root
