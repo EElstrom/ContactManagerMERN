@@ -18,13 +18,14 @@ sudo npm install -g n
 ```
 sudo npm install -g nodemon
 ```
-4) Change Directory to the ContactManagerMERN app and install express, mongodb, and body-parser
+4) Change Directory to the ContactManagerMERN app and install express, mongodb, fetch, and body-parser
 ```
 cd ContactManagerMERN/
 sudo npm install
 sudo npm install express --save
 sudo npm install body-parser
 sudo npm install mongodb
+sudo npm install node-fetch --save
 ```
 Note: You should now be able to start the express server using the following:
 ```
