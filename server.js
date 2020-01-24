@@ -17,53 +17,24 @@ app.use((req, res, next) =>
 });
 
 // API Endpoint for registering a new user account with the database
-	// Input JSON
-	// {
-	//   "username":STRING,
-	//   "password":STRING,
-	//   "firstName":STRING,
-	//   "lastname":STRING,
-	//   "emailAddress":STRING
-	// }
-
-	// Response JSON
-	// {
-	//   "result:STRING,
-	//   "error":STRING
-	// }
+	// Input : {"username":STRING, "password":STRING, "firstName":STRING, "lastname":STRING, "emailAddress":STRING}
+	// Response : {"result:STRING, "error":STRING}
 app.post('/api/register', async(req, res, next) =>
 {
 
 });
 
 // API Endpoint for logging in as an existing user
-	// Input JSON
-	// {
-	//   "username":STRING,
-	//   "password":STRING
-	// }
-
-	// Response JSON
-	// {
-	//   "result:STRING,
-	//   "error":STRING
-	// }
+	// Input : {"username":STRING, "password":STRING}
+	// Response : {"result:STRING, "error":STRING}
 app.post('/api/login', async(req, res, next) =>
 {
 
 });
 
 // API Endpoint for communicating with cleverbot
-	// Input JSON
-	// {
-	//   "message":STRING
-	// }
-
-	// Response JSON
-	// {
-	//   "reply":STRING,
-	//   "error":STRING
-	// }
+	// Input : {"message":STRING}
+	// Response : {"reply":STRING, "error":STRING}
 app.post('/api/clever', async(req, res, next) =>
 {
 	try
