@@ -12,39 +12,22 @@ git clone https://github.com/devon-gadarowski/ContactManagerMERN.git
 ```
 sudo apt-get install nodejs
 sudo apt-get install npm
-sudo npm install -g n
 ```
-3) Install nodemon (a tool for our express server)
-```
-sudo npm install -g nodemon
-```
-4) Change Directory to the ContactManagerMERN app and install express, mongodb, fetch, and body-parser
+3) Change Directory to the ContactManagerMERN app and install dependencies
 ```
 cd ContactManagerMERN/
-sudo npm install
-sudo npm install express --save
-sudo npm install body-parser
-sudo npm install mongodb
-sudo npm install node-fetch --save
+npm install
 ```
-Note: You should now be able to start the express server using the following:
-```
-npm start
-```
-The express server will serve our react app to the client browser. Check localhost:8000 in your browser to see the app working. You should see the following message:
-```
-Error: ENOENT: no such file or directory, stat '/home/devon/Desktop/classes/COP4331/ContactManagerMERN/frontend/build/index.html'
-```
-5) Now we need to install our react modules inside the frontend directory.
+4) Now we need to install our react  dependencies inside the frontend directory.
 ```
 cd frontend/
-npm install react react-scripts react-dom react-router-dom
+npm install
 ```
-6) Now build the react frontend by running the following inside the frontend directory. React will need to be rebuilt everytime changes are made to the frontend.
+5) Now build the react frontend by running the following inside the frontend directory. React will need to be rebuilt everytime changes are made to the frontend.
 ```
 npm run build
 ```
-7) You should now be able to start the express server and see the app in action by accessing localhost:8000 in your browser.
+6) You should now be able to start the express server and see the app in action by accessing localhost:8000 in your browser.
 ```
 cd ..
 npm start
