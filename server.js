@@ -47,6 +47,3 @@ app.use(searchContacts);
 app.use(clever);
 
 app.listen(8000, () => console.log('Express: Server Started'));
-
-
-// I don't know what this does but I am leaving it here for now in case I need it.
