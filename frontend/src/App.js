@@ -4,16 +4,20 @@ import './App.css';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 
 import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
 
 function App()
 {
 	return (
 		<Router>
 			<Switch>
-				<Route path="/" exact>
+				<Route path="/login" exact>
 					<LoginPage />
 				</Route>
-				<Redirect to="/" />
+				<Route path="/register" exact>
+					<RegisterPage />
+				</Route>
+				<Redirect to="/register" />
 			</Switch>
 		</Router>
 	);

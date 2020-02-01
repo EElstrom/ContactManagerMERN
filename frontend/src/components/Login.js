@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
+const fetch = require('node-fetch');
 
 function Login()
 {
@@ -11,7 +14,16 @@ function Login()
 	{
 		event.preventDefault();
 
-		alert("TODO: Implement Login /frontend/src/components/Login.js");
+		const username = loginName.value;
+		const password = loginPassword.value;
+
+		const response = await fetch('http://localhost:8000/api/login', {
+		  method: 'POST',
+		  headers: {'Content-Type': 'application/json'},
+		  body: JSON.stringify({username: username, password: password})
+		}).then(response => {return response.json()});
+
+		setMessage(JSON.stringify(response));
 	};
 
 	return (
@@ -21,7 +33,8 @@ function Login()
 				<input type="password" id="loginPassword" placeholder="Password" ref={(c) => loginPassword = c} /><br />
 				<input type="submit" id="loginButton" class="buttons" value="Log In" onClick={doLogin}/>
 			</form>
-			<span id="loginResult">{message}</span>
+			<Link to="/register">Register a new account here</Link><br />
+			<span id="result">{message}</span><br />
 		</div>
 	);
 };
