@@ -17,7 +17,7 @@ function App()
 				<Route path="/register" exact>
 					<RegisterPage />
 				</Route>
-				<Redirect to="/register" />
+				<Redirect to="/login" />
 			</Switch>
 		</Router>
 	);
