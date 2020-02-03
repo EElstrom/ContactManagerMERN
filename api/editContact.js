@@ -56,7 +56,6 @@ router.post('/api/editContact', function(req, res, next)
 					}
 					else
 					{
-						console.log(contact);
 						res.status(200).json({success: true});
 					}
 				});
