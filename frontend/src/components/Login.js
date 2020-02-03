@@ -29,6 +29,7 @@ function Login()
 		if (response.success) {
 			// do login magic here
 			setMessage('Logged in');
+			window.location.replace("/home");
 		}
 		else if (response.errors === 'bad login') {
 			setMessage('Username or password is incorrect');
@@ -46,8 +47,9 @@ function Login()
 	};
 
 	return (
-
+		<div>
 		<div id="container">
+			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Font+Name"></link>
 			<div id="header">
 				<p>Contact Manager</p>
 			</div>
@@ -63,7 +65,7 @@ function Login()
 				</p>
 			</div>
 		</div>
-		
+		</div>
 	);
 };
 
