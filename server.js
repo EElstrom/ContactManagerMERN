@@ -13,6 +13,7 @@ const addContact = require('./api/addContact');
 const editContact = require('./api/editContact');
 const deleteContact = require('./api/deleteContact');
 const searchContacts = require('./api/searchContacts');
+const getUserInfo = require('./api/getUserInfo');
 const clever = require('./api/clever');
 
 // MongoDB Client
@@ -36,6 +37,7 @@ app.use(addContact);
 app.use(editContact);
 app.use(deleteContact);
 app.use(searchContacts);
+app.use(getUserInfo);
 app.use(clever);
 
 app.listen(8000, () => console.log('Express: Server Started'));
