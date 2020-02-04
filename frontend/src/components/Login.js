@@ -25,7 +25,8 @@ function Login()
 		}).then(response => {return response.json()});
 
 		console.log(JSON.stringify(response));
-		
+
+		// Save response.token in local memory to use later 
 		if (response.success) {
 			// do login magic here
 			setMessage('Logged in');
