@@ -59,7 +59,7 @@ router.post('/api/login', async function(req, res, next)
 						  username: user.username,
 						  firstname: user.firstname,
 						  lastname: user.lastname,
-						  email: user.email 
+						  email: user.email
 						};
 
 						jwt.sign(payload, keys.secretOrKey, {expiresIn: 31556926}, function(err, token)

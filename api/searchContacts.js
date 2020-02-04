@@ -31,7 +31,26 @@ router.post('/api/searchContacts', function(req, res, next)
 
 			if (validation.isValid)
 			{
-				Contact.find({userId: user.id}, function(err, arr)
+				const firstname = (isEmpty(req.body.firstname)) ? "" : req.body.firstname;
+				const lastname = (isEmpty(req.body.lastname)) ? "" : req.body.lastname;
+				const phoneNumber = (isEmpty(req.body.phoneNumber)) ? "" : req.body.phoneNumber;
+				const email = (isEmpty(req.body.email)) ? "" : req.body.email;
+				const address = (isEmpty(req.body.address)) ? "" : req.body.address;
+
+				const request = {};
+				request.userId = user.id;
+				if (firstname)
+					request.firstname = {$regex: '.*' + firstname + '.*', $options: 'i'};
+				if (lastname)
+					request.lastname = {$regex: '.*' + lastname + '.*', $options: 'i'};
+				if (phoneNumber)
+					request.phoneNumber = {$regex: '.*' + phoneNumber + '.*', $options: 'i'};
+				if (email)
+					request.email = {$regex: '.*' + email + '.*', $options: 'i'};
+				if (address)
+					request.address = {$regex: '.*' + address + '.*', $options: 'i'};
+
+				Contact.find(request, function(err, arr)
 				{
 					if (err)
 					{
@@ -40,7 +59,15 @@ router.post('/api/searchContacts', function(req, res, next)
 					}
 					else
 					{
-						res.status(200).json({success: true, contacts: arr});
+						var contacts = [];
+						for (i = 0; i < arr.length; i++)
+						{
+							var contact = JSON.parse(JSON.stringify(arr[i]));
+							delete contact.userId;
+							delete contact.__v;
+							contacts.push(contact);
+						}
+						res.status(200).json({success: true, contacts: contacts});
 					}
 				});
 			}
