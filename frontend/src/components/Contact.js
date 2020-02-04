@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './login.css';
-import './home.css'
+import './Login.css';
+import './Home.css'
 
 const fetch = require('node-fetch');
 
