@@ -14,7 +14,7 @@ function Register()
 	
 	const [message,setMessage] = useState('');
 	
-	const [userBox, setUserBox] = useState('large-text-box');
+	const [userBox, setUserBox] = useState('large-text-box-2');
 	const [firstnameBox, setFirstnameBox] = useState('large-text-box');
 	const [lastnameBox, setLastnameBox] = useState('large-text-box');
 	const [emailBox, setEmailBox] = useState('large-text-box');
@@ -84,9 +84,9 @@ function Register()
 
 	return (
 		<div id="container">
-			<div id="header">
-				<p>Contact Manager</p>
-			</div>
+			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:900"></link>
+			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bree+Serif"></link>
+			<div id="header">Contact Manager</div>
 			<div id="login">
 				<form onSubmit={doRegister}>
 					<input class={userBox} type="text" id="username" placeholder="username" ref={(c) => username = c}/><br />

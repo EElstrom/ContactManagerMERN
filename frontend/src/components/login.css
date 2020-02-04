@@ -3,15 +3,15 @@ body {
 }
 
 #container {
-	margin: auto;
-	margin-top: 15%;
-	margin-bottom: 15%;
+	margin: 10% auto;
 	text-align: center;
 	background-color: #FFFFFF;
 	height: 50%;
 	width: 50%;
   	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  	border-radius: 10px;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
 }
 
 #header {
@@ -19,11 +19,10 @@ body {
 	color: #4DA761;
 	font-weight: bold;
 	font-size: 30pt;
-	padding: 1px;
+	margin: 40px 0px;
 }
 
 #login {
-	padding: 10px;
 	font-family: 'Bree Serif', verdana, arial, helvetica, sans-serif;
 }
 
@@ -59,6 +58,18 @@ body {
 	max-width: 70%;
 	height: 3em;
 	margin: 10px;
+	background-color: #EDEDF5;
+}
+
+.large-text-box-2 {
+	border-color: transparent;
+	outline: none;
+	padding-left: 20px;
+	border-radius: 5px;
+	width: 20em;
+	max-width: 70%;
+	height: 3em;
+	margin: 0px 10px 10px 10px;
 	background-color: #EDEDF5;
 }
 

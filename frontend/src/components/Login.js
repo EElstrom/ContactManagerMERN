@@ -49,13 +49,12 @@ function Login()
 	return (
 		<div>
 		<div id="container">
-			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Font+Name"></link>
-			<div id="header">
-				<p>Contact Manager</p>
-			</div>
+			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:900"></link>
+			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bree+Serif"></link>
+			<div id="header">Contact Manager</div>
 			<div id="login">
 				<form onSubmit={doLogin}>
-					<input class="large-text-box" type="text" id="loginName" placeholder="username" ref={(c) => loginName = c}/><br />
+					<input class="large-text-box-2" type="text" id="loginName" placeholder="username" ref={(c) => loginName = c}/><br />
 					<input class="large-text-box" type="password" id="loginPassword" placeholder="password" ref={(c) => loginPassword = c}/><br />
 					<input type="submit" id="loginButton" class="buttons" value="SIGN IN" onClick={doLogin}/>
 				</form>
