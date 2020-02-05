@@ -4,80 +4,57 @@ import './Login.css';
 
 const fetch = require('node-fetch');
 
-function Register()
+function AddContact()
 {
-	var username;
-	var firstname;
-	var lastname;
-	var email;
-	var password;
+	var firstname = '';
+	var lastname = '';
+	var phoneNumber = '';
+	var email = '';
+	var address = '';
 	
 	const [message,setMessage] = useState('');
 	
-	const [userBox, setUserBox] = useState('large-text-box-2');
 	const [firstnameBox, setFirstnameBox] = useState('large-text-box');
 	const [lastnameBox, setLastnameBox] = useState('large-text-box');
+	const [phoneNumberBox, setPhoneNumberBox] = useState('large-text-box');
 	const [emailBox, setEmailBox] = useState('large-text-box');
-	const [passwordBox, setPasswordBox] = useState('large-text-box');
+	const [addressBox, setAddressBox] = useState('large-text-box');
 
-	const doRegister = async event =>
+	const doAddContact = async event =>
 	{
 		event.preventDefault();
 
-		username = username.value;
 		firstname = firstname.value;
 		lastname = lastname.value;
+		phoneNumber = phoneNumber.value;
 		email = email.value;
-		password = password.value;
+		address = address.value;
 
-		const response = await fetch('api/register', {
+		const response = await fetch('api/addContact', {
 		  method: 'POST',
 		  headers: {'Content-Type': 'application/json'},
+		  credentials: 'same-origin',
 		  body: JSON.stringify({
-		    username: username,
-		    password: password,
 		    firstname: firstname,
 		    lastname: lastname,
+		    phoneNumber: phoneNumber,
 		    email: email,
+		    address: address
 		  })
 		}).then(response => {return response.json()});
 
 		console.log(JSON.stringify(response));
 		
-		setUserBox('large-text-box');
 		setFirstnameBox('large-text-box');
 		setLastnameBox('large-text-box');
 		setEmailBox('large-text-box');
-		setPasswordBox('large-text-box');
 		if (response.success) {
-			setMessage('Registered');
-			// do registration magic here
+			setMessage(firstname + ' ' + lastname + ' added successfully!');
 		}
 		else {
 			var errors = response.errors;
-			var msg = "";
-			
-			if (errors.username !== undefined) {
-				msg += errors.username + '\n';
-				setUserBox('large-error-box');
-			}
-			if (errors.firstname !== undefined) {
-				msg += errors.firstname + '\n';
-				setFirstnameBox('large-error-box');
-			}
-			if (errors.lastname !== undefined) {
-				msg += errors.lastname + '\n';
-				setLastnameBox('large-error-box');
-			}
-			if (errors.email !== undefined) {
-				setEmailBox('large-error-box');
-				msg += errors.email + '\n';
-			}
-			if (errors.password !== undefined) {
-				msg += errors.password + '\n';
-				setPasswordBox('large-error-box');
-			}
-			setMessage(msg);
+
+			setMessage(JSON.stringify(errors));
 		}
 
 	};
@@ -88,17 +65,17 @@ function Register()
 			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bree+Serif"></link>
 			<div id="header">Contact Manager</div>
 			<div id="login">
-				<form onSubmit={doRegister}>
-					<input class={userBox} type="text" id="username" placeholder="username" ref={(c) => username = c}/><br />
+				<form onSubmit={doAddContact}>
 					<input class={firstnameBox} type="text" id="firstname" placeholder="first name" ref={(c) => firstname = c}/><br />
 					<input class={lastnameBox} type="text" id="lastname" placeholder="last name" ref={(c) => lastname = c}/><br />
+					<input class={phoneNumberBox} type="text" id="phoneNumber" placeholder="phone number" ref={(c) => phoneNumber = c}/><br />
 					<input class={emailBox} type="text" id="email" placeholder="email address" ref={(c) => email = c}/><br />
-					<input class={passwordBox} type="password" id="password" placeholder="password" ref={(c) => password = c}/><br />
-					<input type="submit" id="loginButton" class="buttons" value="REGISTER"/>
+					<input class={addressBox} type="text" id="address" placeholder="address" ref={(c) => address = c}/><br />
+					<input type="submit" id="loginButton" class="buttons" value="ADD"/>
 
 				</form>
 				<p>
-					<Link to="/login">Log in</Link><br />
+					<Link to="/home">Go Home</Link><br />
 					<span id="result">{message}</span><br />
 				</p>
 			</div>
@@ -107,4 +84,4 @@ function Register()
 	);
 };
 
-export default Register;
+export default AddContact;

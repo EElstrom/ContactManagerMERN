@@ -19,7 +19,9 @@ router.post('/api/searchContacts', function(req, res, next)
 {
 	console.log('Express: POST /api/searchContacts');
 
-	jwt.verify(req.headers.authorization, keys.secretOrKey, function(err, user)
+	const authToken = req.cookies.session;
+
+	jwt.verify(authToken, keys.secretOrKey, function(err, user)
 	{
 		if (err || !user)
 		{
