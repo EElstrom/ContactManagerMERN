@@ -8,6 +8,8 @@ const fetch = require('node-fetch');
 // TODO: Convert to 'Factory' function that takes contact details as input and returns a contact component
 function Contact(contact)
 {
+	console.log(console);
+
 	return (
 		<div>
 			<div id="contactContainer">

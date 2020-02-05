@@ -1,35 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Contact from '../components/Contact';
 
+const fetch = require('node-fetch');
+
 const HomePage = () =>
 {
+	const [contactComponents, setComponents] = useState(null);
 
-	// TODO: Create initialization function that calls /api/searchContacts and then creates a contact
-	//       component for each contact returned by the api. api will need authentication token from login
-	function initialize()
+	// Call this function to update contact components
+	async function getContactComponents()
 	{
-		const response = fetch('api/searchContacts', {
+		// TODO: Implement User stored token authentication
+		var devon_auth_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlMzVmMDg5OGVkZTc5NWQ3Y2ZlZTgyZCIsInVzZXJuYW1lIjoiZGV2b25nIiwiZmlyc3RuYW1lIjoiRGV2b24iLCJsYXN0bmFtZSI6IkdhZGFyb3dza2kiLCJlbWFpbCI6ImRldm9uLmdhZGFyb3dza2lAa25pZ2h0cy51Y2YuZWR1IiwiaWF0IjoxNTgwODYyNzQ0LCJleHAiOjE2MTI0MTk2NzB9.DwnJWbMFVK2Fb_j3Io5CdCCNrf77M88POFTuVyXMR_M';
+
+		// API Call
+		const response = await fetch('api/searchContacts', {
 		  method: 'POST',
-		  headers: {'Content-Type': 'application/json', 'Authorization': 'NEED_USER_API_TOKEN'},
+		  headers: {'Content-Type': 'application/json', 'Authorization': devon_auth_token},
 		  body: JSON.stringify({})
 		}).then(response => {return response.json()});
 
-		console.log(response);
-
-		var contact;
-		for (contact in response.contacts)
+		var index;
+		var contacts = [];
+		for (index in response.contacts)
 		{
 			// Make contact components
+			contacts.push(Contact(response.contacts[index]));
 		}
-	};
 
-	// Call this function to update contact components
-	initialize();
+
+		setComponents(contacts);
+	}
+
+	if (contactComponents == null)
+		getContactComponents();
 
 	return (
 		<div>
-			<Contact firstname='Justin' lastname='Miranda' phoneNumber='(123) 456-7890' email='bgates@msn.com'/>
+			{contactComponents}
 		</div>
 	);
 };
