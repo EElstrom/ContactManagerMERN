@@ -7,17 +7,23 @@ const fetch = require('node-fetch');
 
 function Contact()
 {
+	var name = 'Placeholder Name'
+	var number = '(312) 645-9780'
+	var email = 'jsmith@gmail.com'
+	var company = 'ACME, Inc'
+	var role =  'Project Manager'
+
 	return (
 		<div>
-			<div id="contactContainer">
+			<div id="contactCard">
 				<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:900"></link>
 				<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bree+Serif"></link>
 				<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans"></link>
-				<div class="contactHeader">John Smith</div>
-				<div class="contactInfo">(312) 645-9780</div>
-				<div class="contactInfo">jsmith@gmail.com</div>
-				<div class="contactInfo">ACME, Inc</div>
-				<div class="contactInfo">Project Manager</div>
+				<div class="contactHeader">{name}</div>
+				<div class="contactInfo">{number}</div>
+				<div class="contactInfo">{email}</div>
+				<div class="contactInfo">{company}</div>
+				<div class="contactInfo">{role}</div>
 			</div>
 		</div>
 	);

@@ -5,7 +5,10 @@ import Contact from '../components/Contact';
 const HomePage = () =>
 {
 	return (
-		<div>
+		<div id="cardContainer">
+			<Contact />
+			<Contact />
+			<Contact />
 			<Contact />
 		</div>
 	);

@@ -1,5 +1,12 @@
-#contactContainer {
-	margin: 10% auto;
+#cardContainer {
+	display: flex;
+	flex-direction: row;
+	align-content: flex-start;
+	flex-wrap: wrap;
+}
+
+#contactCard {
+	margin: 40px 20px;
 	background-color: #FFFFFF;
 	height: 214px;
 	width: 488px;
