@@ -62,9 +62,11 @@ router.post('/api/login', async function(req, res, next)
 						  email: user.email
 						};
 
-						jwt.sign(payload, keys.secretOrKey, {expiresIn: 31556926}, function(err, token)
+						jwt.sign(payload, keys.secretOrKey, {expiresIn: 7200}, function(err, token)
 						{
-							res.status(200).json({success: true, token: token});
+							res.status(200)
+							   .cookie('session', token, {httpOnly: true, expires: 0})
+							   .json({success: true});
 						});
 					}
 					else

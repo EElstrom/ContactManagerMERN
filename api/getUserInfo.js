@@ -8,7 +8,9 @@ router.post('/api/getUserInfo', function(req, res, next)
 {
 	console.log('Express: POST /api/getUserInfo');
 
-	jwt.verify(req.headers.authorization, keys.secretOrKey, function(err, user)
+	const authToken = req.cookies.session;
+
+	jwt.verify(authToken, keys.secretOrKey, function(err, user)
 	{
 		if (err || !user)
 		{

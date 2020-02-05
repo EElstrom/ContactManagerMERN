@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser')
 
 const app = express();
 
@@ -22,6 +23,15 @@ mongoose.connect(keys.mongoURI, {useNewUrlParser: true, useUnifiedTopology: true
         .catch(err => console.error(err));
 
 app.use(bodyParser.json());
+app.use(cookieParser());
+
+app.use((req, res, next) => 
+{
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS');
+	next();
+});
 
 // Frontend Routes
 app.use(express.static('./frontend/build'));

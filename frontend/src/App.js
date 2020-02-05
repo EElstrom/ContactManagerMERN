@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import HomePage from './pages/HomePage';
+import AddContactPage from './pages/AddContactPage';
 import TestPage from './pages/TestPage'
 
 function App()
@@ -21,6 +22,9 @@ function App()
 				</Route>
 				<Route path="/home" exact>
 					<HomePage />
+				</Route>
+				<Route path="/addContact" exact>
+					<AddContactPage />
 				</Route>
 				<Route path="/test" exact>
 					<TestPage />

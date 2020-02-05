@@ -1,35 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import Contact from '../components/Contact';
 
-const HomePage = () =>
+const fetch = require('node-fetch');
+
+const HomePage = data =>
 {
+	const [contactComponents, setComponents] = useState(null);
 
-	// TODO: Create initialization function that calls /api/searchContacts and then creates a contact
-	//       component for each contact returned by the api. api will need authentication token from login
-	function initialize()
-	{
-		const response = fetch('api/searchContacts', {
-		  method: 'POST',
-		  headers: {'Content-Type': 'application/json', 'Authorization': 'NEED_USER_API_TOKEN'},
-		  body: JSON.stringify({})
-		}).then(response => {return response.json()});
-
-		console.log(response);
-
-		var contact;
-		for (contact in response.contacts)
-		{
-			// Make contact components
-		}
-	};
+	var query = "";
 
 	// Call this function to update contact components
-	initialize();
+	async function getContactComponents()
+	{
+		// API Call
+		const response = await fetch('api/searchContacts', {
+		  method: 'POST',
+		  credentials: 'same-origin',
+		  headers: {'Content-Type': 'application/json'},
+		  body: JSON.stringify({
+		    "query": query,
+		    "sort_by": {"lastname": 1}
+		  })
+		}).then(response => {return response.json()});
+
+		var index;
+		var contacts = [];
+		for (index in response.contacts)
+		{
+			// Make contact components
+			response.contacts[index].key = index;
+			contacts.push(Contact(response.contacts[index]));
+		}
+
+		setComponents(contacts);
+	}
+
+	if (contactComponents == null)
+		getContactComponents();
 
 	return (
 		<div>
-			<Contact firstname='Justin' lastname='Miranda' phoneNumber='(123) 456-7890' email='bgates@msn.com'/>
+			<Link to="/AddContact">Add a new Contact</Link><br />
+			{contactComponents}
 		</div>
 	);
 };

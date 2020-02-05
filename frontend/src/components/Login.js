@@ -4,7 +4,7 @@ import './Login.css';
 
 const fetch = require('node-fetch');
 
-function Login()
+const Login = data =>
 {
 	var loginName;
 	var loginPassword;
@@ -23,8 +23,6 @@ function Login()
 		  headers: {'Content-Type': 'application/json'},
 		  body: JSON.stringify({username: username, password: password})
 		}).then(response => {return response.json()});
-
-		console.log(JSON.stringify(response));
 
 		// Save response.token in local memory to use later 
 		if (response.success) {
@@ -55,9 +53,9 @@ function Login()
 			<div id="header">Contact Manager</div>
 			<div id="login">
 				<form onSubmit={doLogin}>
-					<input class="large-text-box-2" type="text" id="loginName" placeholder="username" ref={(c) => loginName = c}/><br />
-					<input class="large-text-box" type="password" id="loginPassword" placeholder="password" ref={(c) => loginPassword = c}/><br />
-					<input type="submit" id="loginButton" class="buttons" value="SIGN IN" onClick={doLogin}/>
+					<input className="large-text-box-2" type="text" id="loginName" placeholder="username" ref={(c) => loginName = c}/><br />
+					<input className="large-text-box" type="password" id="loginPassword" placeholder="password" ref={(c) => loginPassword = c}/><br />
+					<input type="submit" id="loginButton" className="buttons" value="SIGN IN"/>
 				</form>
 				<p>
 					<Link to="/register">Register a new account</Link><br />

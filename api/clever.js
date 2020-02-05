@@ -9,7 +9,9 @@ router.post('/api/clever', async(req, res, next) =>
 {
 	console.log('Express: POST /api/clever');
 
-	jwt.verify(req.headers.authorization, keys.secretOrKey, async function(err, decoded)
+	const authToken = req.cookies.session;
+
+	jwt.verify(authToken, keys.secretOrKey, async function(err, decoded)
 	{
 		if (err || !decoded)
 		{

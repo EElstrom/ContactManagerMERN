@@ -19,7 +19,9 @@ router.post('/api/searchContacts', function(req, res, next)
 {
 	console.log('Express: POST /api/searchContacts');
 
-	jwt.verify(req.headers.authorization, keys.secretOrKey, function(err, user)
+	const authToken = req.cookies.session;
+
+	jwt.verify(authToken, keys.secretOrKey, function(err, user)
 	{
 		if (err || !user)
 		{
@@ -31,24 +33,42 @@ router.post('/api/searchContacts', function(req, res, next)
 
 			if (validation.isValid)
 			{
+				const query = (isEmpty(req.body.query)) ? "" : req.body.query;
 				const firstname = (isEmpty(req.body.firstname)) ? "" : req.body.firstname;
 				const lastname = (isEmpty(req.body.lastname)) ? "" : req.body.lastname;
 				const phoneNumber = (isEmpty(req.body.phoneNumber)) ? "" : req.body.phoneNumber;
 				const email = (isEmpty(req.body.email)) ? "" : req.body.email;
 				const address = (isEmpty(req.body.address)) ? "" : req.body.address;
 
-				const request = {};
+				var request = {};
 				request.userId = user.id;
-				if (firstname)
-					request.firstname = {$regex: '.*' + firstname + '.*', $options: 'i'};
-				if (lastname)
-					request.lastname = {$regex: '.*' + lastname + '.*', $options: 'i'};
-				if (phoneNumber)
-					request.phoneNumber = {$regex: '.*' + phoneNumber + '.*', $options: 'i'};
-				if (email)
-					request.email = {$regex: '.*' + email + '.*', $options: 'i'};
-				if (address)
-					request.address = {$regex: '.*' + address + '.*', $options: 'i'};
+
+				if (query)
+				{
+					request = {
+					  $or: [
+					    {firstname: {$regex: '.*' + query + '.*', $options: 'i'}},
+					    {lastname: {$regex: '.*' + query + '.*', $options: 'i'}},
+					    {phoneNumber: {$regex: '.*' + query + '.*', $options: 'i'}},
+					    {email: {$regex: '.*' + query + '.*', $options: 'i'}},
+					    {address: {$regex: '.*' + query + '.*', $options: 'i'}}
+					  ]
+					};
+				}
+				else
+				{
+					if (firstname)
+						request.firstname = {$regex: '.*' + firstname + '.*', $options: 'i'};
+					if (lastname)
+						request.lastname = {$regex: '.*' + lastname + '.*', $options: 'i'};
+					if (phoneNumber)
+						request.phoneNumber = {$regex: '.*' + phoneNumber + '.*', $options: 'i'};
+					if (email)
+						request.email = {$regex: '.*' + email + '.*', $options: 'i'};
+					if (address)
+						request.address = {$regex: '.*' + address + '.*', $options: 'i'};
+				}
+
 
 				Contact.find(request, function(err, arr)
 				{
@@ -69,7 +89,7 @@ router.post('/api/searchContacts', function(req, res, next)
 						}
 						res.status(200).json({success: true, contacts: contacts});
 					}
-				});
+				}).sort((isEmpty(req.body.sort_by)) ? {lastname: 1} : req.body.sort_by);
 			}
 			else
 			{
