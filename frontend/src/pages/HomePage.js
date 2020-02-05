@@ -9,6 +9,8 @@ const HomePage = data =>
 {
 	const [contactComponents, setComponents] = useState(null);
 
+	var query = "";
+
 	// Call this function to update contact components
 	async function getContactComponents()
 	{
@@ -17,7 +19,10 @@ const HomePage = data =>
 		  method: 'POST',
 		  credentials: 'same-origin',
 		  headers: {'Content-Type': 'application/json'},
-		  body: JSON.stringify({})
+		  body: JSON.stringify({
+		    "query": query,
+		    "sort_by": {"lastname": 1}
+		  })
 		}).then(response => {return response.json()});
 
 		var index;

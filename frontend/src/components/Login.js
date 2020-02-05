@@ -53,9 +53,9 @@ const Login = data =>
 			<div id="header">Contact Manager</div>
 			<div id="login">
 				<form onSubmit={doLogin}>
-					<input class="large-text-box-2" type="text" id="loginName" placeholder="username" ref={(c) => loginName = c}/><br />
-					<input class="large-text-box" type="password" id="loginPassword" placeholder="password" ref={(c) => loginPassword = c}/><br />
-					<input type="submit" id="loginButton" class="buttons" value="SIGN IN"/>
+					<input className="large-text-box-2" type="text" id="loginName" placeholder="username" ref={(c) => loginName = c}/><br />
+					<input className="large-text-box" type="password" id="loginPassword" placeholder="password" ref={(c) => loginPassword = c}/><br />
+					<input type="submit" id="loginButton" className="buttons" value="SIGN IN"/>
 				</form>
 				<p>
 					<Link to="/register">Register a new account</Link><br />
