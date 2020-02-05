@@ -25,6 +25,7 @@ const HomePage = data =>
 		for (index in response.contacts)
 		{
 			// Make contact components
+			response.contacts[index].key = index;
 			contacts.push(Contact(response.contacts[index]));
 		}
 

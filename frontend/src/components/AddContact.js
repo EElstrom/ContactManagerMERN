@@ -3,14 +3,15 @@ import { Link } from 'react-router-dom';
 import './Login.css';
 
 const fetch = require('node-fetch');
+const isEmpty = require('is-empty');
 
 function AddContact()
 {
-	var firstname = '';
-	var lastname = '';
-	var phoneNumber = '';
-	var email = '';
-	var address = '';
+	var firstname;
+	var lastname;
+	var phoneNumber;
+	var email;
+	var address;
 	
 	const [message,setMessage] = useState('');
 	
@@ -24,23 +25,24 @@ function AddContact()
 	{
 		event.preventDefault();
 
-		firstname = firstname.value;
-		lastname = lastname.value;
-		phoneNumber = phoneNumber.value;
-		email = email.value;
-		address = address.value;
+		const contact = {};
+
+		if (!isEmpty(firstname.value))
+			contact.firstname = firstname.value;
+		if (!isEmpty(lastname.value))
+			contact.lastname = lastname.value;
+		if (!isEmpty(phoneNumber.value))
+			contact.phoneNumber = phoneNumber.value;
+		if (!isEmpty(email.value))
+			contact.email = email.value;
+		if (!isEmpty(address.value))
+			contact.address = address.value;
 
 		const response = await fetch('api/addContact', {
 		  method: 'POST',
 		  headers: {'Content-Type': 'application/json'},
 		  credentials: 'same-origin',
-		  body: JSON.stringify({
-		    firstname: firstname,
-		    lastname: lastname,
-		    phoneNumber: phoneNumber,
-		    email: email,
-		    address: address
-		  })
+		  body: JSON.stringify(contact)
 		}).then(response => {return response.json()});
 
 		console.log(JSON.stringify(response));
@@ -48,8 +50,10 @@ function AddContact()
 		setFirstnameBox('large-text-box');
 		setLastnameBox('large-text-box');
 		setEmailBox('large-text-box');
+		setPhoneNumberBox('large-text-box');
+		setAddressBox('large-text-box');
 		if (response.success) {
-			setMessage(firstname + ' ' + lastname + ' added successfully!');
+			setMessage(firstname.value + ' ' + lastname.value + ' added successfully!');
 		}
 		else {
 			var errors = response.errors;
