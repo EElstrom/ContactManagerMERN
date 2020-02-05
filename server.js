@@ -13,6 +13,7 @@ const addContact = require('./api/addContact');
 const editContact = require('./api/editContact');
 const deleteContact = require('./api/deleteContact');
 const searchContacts = require('./api/searchContacts');
+const getUserInfo = require('./api/getUserInfo');
 const clever = require('./api/clever');
 
 // MongoDB Client
@@ -22,14 +23,6 @@ mongoose.connect(keys.mongoURI, {useNewUrlParser: true, useUnifiedTopology: true
 
 app.use(bodyParser.json());
 
-app.use((req, res, next) =>
-{
-	res.setHeader('Access-Control-Allow-Origin', '*');
-	res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS');
-	next();
-});
-
 // Frontend Routes
 app.use(express.static('./frontend/build'));
 app.get('*', function(req, res)
@@ -38,12 +31,14 @@ app.get('*', function(req, res)
 });
 
 // API Routes
+// TODO: Update Database API to support Job-Title and Company contact fields
 app.use(register);
 app.use(login);
 app.use(addContact);
 app.use(editContact);
 app.use(deleteContact);
 app.use(searchContacts);
+app.use(getUserInfo);
 app.use(clever);
 
 app.listen(8000, () => console.log('Express: Server Started'));
