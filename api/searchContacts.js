@@ -89,7 +89,7 @@ router.post('/api/searchContacts', function(req, res, next)
 						}
 						res.status(200).json({success: true, contacts: contacts});
 					}
-				});
+				}).sort((isEmpty(req.body.sort_by)) ? {lastname: 1} : req.body.sort_by);
 			}
 			else
 			{
