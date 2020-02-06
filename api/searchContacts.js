@@ -72,9 +72,9 @@ router.post('/api/searchContacts', function(req, res, next)
 					if (address)
 						request.address = {$regex: '.*' + address + '.*', $options: 'i'};
 					if (company)
-						request.address = {$regex: '.*' + company + '.*', $options: 'i'};
+						request.company = {$regex: '.*' + company + '.*', $options: 'i'};
 					if (title)
-						request.address = {$regex: '.*' + title + '.*', $options: 'i'};
+						request.title = {$regex: '.*' + title + '.*', $options: 'i'};
 				}
 
 

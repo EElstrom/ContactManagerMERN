@@ -20,8 +20,8 @@ const HomePage = data =>
 		  credentials: 'same-origin',
 		  headers: {'Content-Type': 'application/json'},
 		  body: JSON.stringify({
-		    "query": query,
-		    "sort_by": {"lastname": 1}
+		    query: query,
+		    sort_by: {lastname: 1}
 		  })
 		}).then(response => {return response.json()});
 
