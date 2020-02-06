@@ -13,8 +13,8 @@ function Contact(contact)
 				<div className="contactHeader">{contact.firstname} {contact.lastname}</div>
 				<div className="contactInfo">{contact.phoneNumber}</div>
 				<div className="contactInfo">{contact.email}</div>
-				<div className="contactInfo">ACME, Inc</div>
-				<div className="contactInfo">Project Manager</div>
+				<div className="contactInfo">{contact.company}</div>
+				<div className="contactInfo">{contact.title}</div>
 			</div>
 		</div>
 	);

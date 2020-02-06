@@ -39,6 +39,8 @@ router.post('/api/searchContacts', function(req, res, next)
 				const phoneNumber = (isEmpty(req.body.phoneNumber)) ? "" : req.body.phoneNumber;
 				const email = (isEmpty(req.body.email)) ? "" : req.body.email;
 				const address = (isEmpty(req.body.address)) ? "" : req.body.address;
+				const company = (isEmpty(req.body.company)) ? "" : req.body.company;
+				const title = (isEmpty(req.body.title)) ? "" : req.body.title;
 
 				var request = {};
 				request.userId = user.id;
@@ -51,7 +53,9 @@ router.post('/api/searchContacts', function(req, res, next)
 					    {lastname: {$regex: '.*' + query + '.*', $options: 'i'}},
 					    {phoneNumber: {$regex: '.*' + query + '.*', $options: 'i'}},
 					    {email: {$regex: '.*' + query + '.*', $options: 'i'}},
-					    {address: {$regex: '.*' + query + '.*', $options: 'i'}}
+					    {address: {$regex: '.*' + query + '.*', $options: 'i'}},
+					    {company: {$regex: '.*' + query + '.*', $options: 'i'}},
+					    {title: {$regex: '.*' + query + '.*', $options: 'i'}}
 					  ]
 					};
 				}
@@ -67,6 +71,10 @@ router.post('/api/searchContacts', function(req, res, next)
 						request.email = {$regex: '.*' + email + '.*', $options: 'i'};
 					if (address)
 						request.address = {$regex: '.*' + address + '.*', $options: 'i'};
+					if (company)
+						request.address = {$regex: '.*' + company + '.*', $options: 'i'};
+					if (title)
+						request.address = {$regex: '.*' + title + '.*', $options: 'i'};
 				}
 
 

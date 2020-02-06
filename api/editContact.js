@@ -48,6 +48,10 @@ router.post('/api/editContact', function(req, res, next)
 					update.email = req.body.email;
 				if (req.body.address)
 					update.address = req.body.address;
+				if (req.body.company)
+					update.company = req.body.company;
+				if (req.body.title)
+					update.title = req.body.title;
 
 				Contact.findOneAndUpdate({_id: req.body.id, userId: user.id}, update, function(err, contact)
 				{
