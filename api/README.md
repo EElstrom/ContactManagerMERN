@@ -163,8 +163,6 @@ Delete an existing contact. Requires successful login
 The Request
 
 ```JavaScript
-// Leave unused optional fields undefined (don't even include them in the request)
-// Included field values will overwrite existing ones
 {
   id: "THE_ID_OF_THE_CONTACT_YOU_WANT_TO_DELETE" // Required String
 }
