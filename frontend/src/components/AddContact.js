@@ -67,15 +67,15 @@ function AddContact()
 		<div id="container">
 			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:900"></link>
 			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bree+Serif"></link>
-			<div id="header">Contact Manager</div>
+			<div id="header">Add Contact</div>
 			<div id="login">
 				<form onSubmit={doAddContact}>
-					<input class={firstnameBox} type="text" id="firstname" placeholder="first name" ref={(c) => firstname = c}/><br />
-					<input class={lastnameBox} type="text" id="lastname" placeholder="last name" ref={(c) => lastname = c}/><br />
-					<input class={phoneNumberBox} type="text" id="phoneNumber" placeholder="phone number" ref={(c) => phoneNumber = c}/><br />
-					<input class={emailBox} type="text" id="email" placeholder="email address" ref={(c) => email = c}/><br />
-					<input class={addressBox} type="text" id="address" placeholder="address" ref={(c) => address = c}/><br />
-					<input type="submit" id="loginButton" class="buttons" value="ADD"/>
+					<input className={firstnameBox} type="text" id="firstname" placeholder="first name" ref={(c) => firstname = c}/><br />
+					<input className={lastnameBox} type="text" id="lastname" placeholder="last name" ref={(c) => lastname = c}/><br />
+					<input className={phoneNumberBox} type="text" id="phoneNumber" placeholder="phone number" ref={(c) => phoneNumber = c}/><br />
+					<input className={emailBox} type="text" id="email" placeholder="email address" ref={(c) => email = c}/><br />
+					<input className={addressBox} type="text" id="address" placeholder="address" ref={(c) => address = c}/><br />
+					<input type="submit" id="loginButton" className="buttons" value="ADD"/>
 
 				</form>
 				<p>

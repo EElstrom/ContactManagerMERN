@@ -5,6 +5,8 @@ import ContactList from '../components/ContactList';
 
 class HomePage extends React.Component
 {
+	activeComponent = 'ContactList';
+
 	constructor(props)
 	{
 		super(props);
