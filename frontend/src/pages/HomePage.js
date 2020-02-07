@@ -13,8 +13,8 @@ class HomePage extends React.Component
 	render()
 	{
 		return (
-			<div>
-				<Link to="/AddContact">Add a new Contact</Link><br />
+			<div className='home-page'>
+				<Link to="/AddContact" >Add a new Contact</Link><br />
 				<ContactList />
 			</div>
 		);

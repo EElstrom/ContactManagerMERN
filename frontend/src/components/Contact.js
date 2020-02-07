@@ -85,7 +85,7 @@ class Contact extends React.Component
 					<div className="contactInfo">{this.email}</div>
 					<div className="contactInfo">{this.company}</div>
 					<div className="contactInfo">{this.title}</div>
-					<button id ='kill' onClick={() => this.deleteContact()}> DELETE </button>
+					<button id ='kill' style={{margin:'5%', backgroundColor:'#4DA761', color:'#FFFFFF', alignSelf: 'flex-end'}} onClick={() => this.deleteContact()}> DELETE </button>
 				</div>
 			</div>
 		);
