@@ -1,16 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import ContactList from '../components/ContactList';
 
-const HomePage = data =>
+class HomePage extends React.Component
 {
-	return (
-		<div>
-			<Link to="/AddContact">Add a new Contact</Link><br />
-			<ContactList />
-		</div>
-	);
-};
+	constructor(props)
+	{
+		super(props);
+	}
+
+	render()
+	{
+		return (
+			<div>
+				<Link to="/AddContact">Add a new Contact</Link><br />
+				<ContactList />
+			</div>
+		);
+	}
+}
 
 export default HomePage;

@@ -54,15 +54,18 @@ class Contact extends React.Component
 
 	async deleteContact()
 	{
-		// API Call
-		const response = await fetch('api/deleteContact', {
-		  method: 'POST',
-		  credentials: 'same-origin',
-		  headers: {'Content-Type': 'application/json'},
-		  body: JSON.stringify({
-		    id: this.id
-		  })
-		}).then(response => {return response.json()});
+		if(window.confirm('Are you sure?'))
+		{
+			// API Call
+			const response = await fetch('api/deleteContact', {
+			  method: 'POST',
+			  credentials: 'same-origin',
+			  headers: {'Content-Type': 'application/json'},
+			  body: JSON.stringify({
+				id: this.id
+			  })
+			}).then(response => {return response.json()});
+		}
 
 		this.props.updateContactList();
 	}
