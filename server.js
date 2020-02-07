@@ -41,7 +41,6 @@ app.get('*', function(req, res)
 });
 
 // API Routes
-// TODO: Update Database API to support Job-Title and Company contact fields
 app.use(register);
 app.use(login);
 app.use(addContact);
