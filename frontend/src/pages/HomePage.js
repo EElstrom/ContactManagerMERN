@@ -1,6 +1,8 @@
 import React from 'react';
 
 import Contact from '../components/Contact';
+import RButtons from '../components/RButtons';
+import '../components/Home.css';
 
 const HomePage = () =>
 {
@@ -30,6 +32,7 @@ const HomePage = () =>
 	return (
 		<div>
 			<Contact firstname='Justin' lastname='Miranda' phoneNumber='(123) 456-7890' email='bgates@msn.com'/>
+			<RButtons class="rButtons"/>
 		</div>
 	);
 };

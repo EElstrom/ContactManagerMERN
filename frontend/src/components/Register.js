@@ -85,7 +85,7 @@ function Register()
 	return (
 		<div id="container">
 			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:900"></link>
-			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bree+Serif"></link>
+			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:800"></link>
 			<div id="header">Contact Manager</div>
 			<div id="login">
 				<form onSubmit={doRegister}>
@@ -95,7 +95,6 @@ function Register()
 					<input class={emailBox} type="text" id="email" placeholder="email address" ref={(c) => email = c}/><br />
 					<input class={passwordBox} type="password" id="password" placeholder="password" ref={(c) => password = c}/><br />
 					<input type="submit" id="loginButton" class="buttons" value="REGISTER" onClick={doRegister}/>
-
 				</form>
 				<p>
 					<Link to="/login">Log in</Link><br />

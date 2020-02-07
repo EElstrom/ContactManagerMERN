@@ -18,7 +18,8 @@ function Login()
 		const username = loginName.value;
 		const password = loginPassword.value;
 
-		const response = await fetch('api/login', {
+		// TODO: change abs URL below
+		const response = await fetch('http://localhost:8000/api/login', {
 		  method: 'POST',
 		  headers: {'Content-Type': 'application/json'},
 		  body: JSON.stringify({username: username, password: password})
@@ -51,7 +52,7 @@ function Login()
 		<div>
 		<div id="container">
 			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:900"></link>
-			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bree+Serif"></link>
+			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:800"></link>
 			<div id="header">Contact Manager</div>
 			<div id="login">
 				<form onSubmit={doLogin}>

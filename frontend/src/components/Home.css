@@ -1,7 +1,7 @@
 #cardContainer {
 	display: flex;
 	flex-direction: row;
-	align-content: ;
+	align-content: flex-start;
 	flex-wrap: wrap;
 }
 
@@ -16,6 +16,17 @@
 	flex-direction: column;
 	align-content: flex-start;
 	padding: 21px 40px;
+}
+
+#rButtons {
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+}
+
+#buttonMargin {
+	margin: 10px;
 }
 
 .contactHeader {
