@@ -1,6 +1,7 @@
 import React from 'react';
 import './Login.css';
 import './Home.css';
+import './ContactList.css';
 
 import Contact from '../components/Contact';
 
@@ -56,7 +57,7 @@ class ContactList extends React.Component
 			components[index] = this.contacts[index].render();
 
 		return (
-			<div>{components}</div>
+			<div className='contact-list'>{components}</div>
 		);
 	}
 };

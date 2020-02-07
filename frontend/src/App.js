@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 
