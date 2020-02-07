@@ -2,6 +2,8 @@ import React from 'react';
 import './Login.css';
 import './Home.css';
 
+import AddContact from './AddContact';
+
 const fetch = require('node-fetch');
 
 // Tod Howard: "It just works."
@@ -83,7 +85,7 @@ class Contact extends React.Component
 					<div className="contactInfo">{this.email}</div>
 					<div className="contactInfo">{this.company}</div>
 					<div className="contactInfo">{this.title}</div>
-					<button id = 'kill' onClick={() => this.deleteContact()}> DELETE </button>
+					<button id ='kill' onClick={() => this.deleteContact()}> DELETE </button>
 				</div>
 			</div>
 		);
