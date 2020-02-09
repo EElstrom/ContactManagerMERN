@@ -26,7 +26,9 @@ const Login = data =>
 		const username = loginName.value;
 		const password = loginPassword.value;
 
-		const response = await fetch('/api/login', {
+		console.log('api/login');
+
+		const response = await fetch('api/login', {
 		  method: 'POST',
 		  headers: {'Content-Type': 'application/json'},
 		  body: JSON.stringify({username: username, password: password})

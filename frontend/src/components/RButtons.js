@@ -3,6 +3,8 @@ import React from 'react';
 import {AddButton, LogoutButton} from './SVGs';
 import './Home.css';
 
+const fetch = require('node-fetch');
+
 const RButtons = (props) =>
 {
 	const doAdd = async() =>
@@ -15,7 +17,7 @@ const RButtons = (props) =>
     const doLogout = async() =>
     {
         // actually logout!
-		await fetch('/api/logout', {
+		await fetch('api/logout', {
 		  method: 'POST',
 		  headers: {'Content-Type': 'application/json'},
 		  credentials: 'same-origin',
