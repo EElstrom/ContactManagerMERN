@@ -36,7 +36,7 @@ class EditContact extends React.Component
 		if (!isEmpty(this.title.value))
 			contact.title = this.title.value;
 
-		const response = await fetch('/api/editContact', {
+		const response = await fetch('api/editContact', {
 		  method: 'POST',
 		  headers: {'Content-Type': 'application/json'},
 		  credentials: 'same-origin',
