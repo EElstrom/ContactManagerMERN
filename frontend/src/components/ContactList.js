@@ -20,8 +20,11 @@ class ContactList extends React.Component
 		this.loadContacts();
 	}
 
-	async loadContacts()
+	async loadContacts(query)
 	{
+		if (!query)
+			query = '';
+
 		this.contacts = [];
 
 		// API Call
@@ -30,7 +33,7 @@ class ContactList extends React.Component
 		  credentials: 'same-origin',
 		  headers: {'Content-Type': 'application/json'},
 		  body: JSON.stringify({
-		    query: '',
+		    query: query,
 		    sort_by: {lastname: 1}
 		  })
 		}).then(response => {return response.json()});
@@ -42,6 +45,7 @@ class ContactList extends React.Component
 			const contact = response.contacts[index];
 			contact.key = index;
 			contact.updateContactList = this.loadContacts;
+			contact.toggleEditContact = this.props.toggleEditContact;
 			this.contacts.push(new Contact(contact));
 		}
 
