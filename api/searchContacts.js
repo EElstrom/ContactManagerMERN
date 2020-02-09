@@ -43,7 +43,6 @@ router.post('/api/searchContacts', function(req, res, next)
 				const title = (isEmpty(req.body.title)) ? "" : req.body.title;
 
 				var request = {};
-				request.userId = user.id;
 
 				if (query)
 				{
@@ -77,7 +76,7 @@ router.post('/api/searchContacts', function(req, res, next)
 						request.title = {$regex: '.*' + title + '.*', $options: 'i'};
 				}
 
-
+				request.userId = user.id;
 				Contact.find(request, function(err, arr)
 				{
 					if (err)
