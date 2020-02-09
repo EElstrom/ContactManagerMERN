@@ -9,8 +9,6 @@ const fetch = require('node-fetch');
 
 class ContactList extends React.Component
 {
-	contacts;
-
 	constructor(props)
 	{
 		super(props);
@@ -20,12 +18,12 @@ class ContactList extends React.Component
 		this.loadContacts();
 	}
 
-	async loadContacts(query)
+	async loadContacts(q)
 	{
-		if (!query)
-			query = '';
+		if (!q)
+			q = '';
 
-		this.contacts = [];
+		var contacts = [];
 
 		// API Call
 		const response = await fetch('api/searchContacts', {
@@ -33,7 +31,7 @@ class ContactList extends React.Component
 		  credentials: 'same-origin',
 		  headers: {'Content-Type': 'application/json'},
 		  body: JSON.stringify({
-		    query: query,
+		    query: q,
 		    sort_by: {lastname: 1}
 		  })
 		}).then(response => {return response.json()});
@@ -46,22 +44,34 @@ class ContactList extends React.Component
 			contact.key = index;
 			contact.updateContactList = this.loadContacts;
 			contact.toggleEditContact = this.props.toggleEditContact;
-			this.contacts.push(new Contact(contact));
+			contacts.push(new Contact(contact));
 		}
 
-		this.forceUpdate();
+		this.setState({contacts: contacts});
 	}
 
 	render()
 	{
 		const components = [];
 
-		var index;
-		for (index in this.contacts)
-			components[index] = this.contacts[index].render();
+		console.log(this.state);
+
+		if (this.state)
+		{
+			var index;
+			for (index in this.state.contacts)
+				components[index] = this.state.contacts[index].render();
+		}
 
 		return (
-			<div className='contact-list'>{components}</div>
+			<div style={{height: '100vh', width: '100%'}}>
+				<div style={{display: 'flex', justifyContent: 'center', backgroundColor: 'transparent'}}>
+					<input className='searchBox' type='text' id='search' placeholder='Search' onChange={(query) => this.loadContacts(query.target.value)}/><br />
+				</div>
+				<div className='contact-list'>
+					{components}
+				</div>
+			</div>
 		);
 	}
 };
