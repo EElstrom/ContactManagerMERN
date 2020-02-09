@@ -36,7 +36,7 @@ function AddContact(props)
 		if (!isEmpty(title.value))
 			contact.title = title.value;
 
-		const response = await fetch('api/addContact', {
+		const response = await fetch('/api/addContact', {
 		  method: 'POST',
 		  headers: {'Content-Type': 'application/json'},
 		  credentials: 'same-origin',

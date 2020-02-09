@@ -47,7 +47,7 @@ class Contact extends React.Component
 		if(window.confirm('Are you sure?'))
 		{
 			// API Call
-			await fetch('api/deleteContact', {
+			await fetch('/api/deleteContact', {
 			  method: 'POST',
 			  credentials: 'same-origin',
 			  headers: {'Content-Type': 'application/json'},
