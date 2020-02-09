@@ -66,7 +66,7 @@ body {
 	background-color: #EDEDF5;
 }
 
-.large-text-box-2 {
+.large-error-box {
 	border-color: transparent;
 	outline: none;
 	padding-left: 20px;
@@ -74,16 +74,15 @@ body {
 	width: 20em;
 	max-width: 70%;
 	height: 3em;
-	margin: 0px 10px 10px 10px;
-	background-color: #EDEDF5;
-}
-
-.large-error-box {
-	padding-left: 20px;
-	border-radius: 10px 10px 10px 10px;
-	width: 20em;
-	max-width: 70%;
-	height: 3em;
 	margin: 10px;
 	background-color: #FF9993;
+}
+
+#username {
+	margin-top: 0px;
+}
+
+
+#errors {
+	color: #FF3550;
 }

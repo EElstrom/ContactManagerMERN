@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {AddButton, LogoutButton} from './SVGs'
+import {AddButton, LogoutButton} from './SVGs';
 import './Home.css';
 
 const RButtons = () =>

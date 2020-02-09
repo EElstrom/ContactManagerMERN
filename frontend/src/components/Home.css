@@ -18,7 +18,7 @@
 	padding: 21px 40px;
 }
 
-#rButtons {
+.rButtons {
 	padding: 20px;
 	display: flex;
 	flex-direction: column;

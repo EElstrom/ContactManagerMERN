@@ -14,11 +14,17 @@ function Register()
 	
 	const [message,setMessage] = useState('');
 	
-	const [userBox, setUserBox] = useState('large-text-box-2');
+	const [userBox, setUserBox] = useState('large-text-box');
 	const [firstnameBox, setFirstnameBox] = useState('large-text-box');
 	const [lastnameBox, setLastnameBox] = useState('large-text-box');
 	const [emailBox, setEmailBox] = useState('large-text-box');
 	const [passwordBox, setPasswordBox] = useState('large-text-box');
+
+	const [userError, setUserError] = useState('');
+	const [firstnameError, setFirstnameError] = useState('');
+	const [lastnameError, setLastnameError] = useState('');
+	const [emailError, setEmailError] = useState('');
+	const [passwordError, setPasswordError] = useState('');
 
 	const doRegister = async event =>
 	{
@@ -49,35 +55,40 @@ function Register()
 		setLastnameBox('large-text-box');
 		setEmailBox('large-text-box');
 		setPasswordBox('large-text-box');
+
+		setMessage('');
+		setUserError('');
+		setFirstnameError('');
+		setLastnameError('');
+		setEmailError('');
+		setPasswordError('');
+
 		if (response.success) {
 			setMessage('Registered');
 			// do registration magic here
 		}
 		else {
 			var errors = response.errors;
-			var msg = "";
-			
 			if (errors.username !== undefined) {
-				msg += errors.username + '\n';
 				setUserBox('large-error-box');
+				setUserError(<span>{errors.username}<br /></span>);
 			}
 			if (errors.firstname !== undefined) {
-				msg += errors.firstname + '\n';
 				setFirstnameBox('large-error-box');
+				setFirstnameError(<span>{errors.firstname}<br /></span>);
 			}
 			if (errors.lastname !== undefined) {
-				msg += errors.lastname + '\n';
 				setLastnameBox('large-error-box');
+				setLastnameError(<span>{errors.lastname}<br /></span>);
 			}
 			if (errors.email !== undefined) {
 				setEmailBox('large-error-box');
-				msg += errors.email + '\n';
+				setEmailError(<span>{errors.email}<br /></span>);
 			}
 			if (errors.password !== undefined) {
-				msg += errors.password + '\n';
 				setPasswordBox('large-error-box');
+				setPasswordError(<span>{errors.password}<br /></span>);
 			}
-			setMessage(msg);
 		}
 
 	};
@@ -99,6 +110,7 @@ function Register()
 				<p>
 					<Link to="/login">Log in</Link><br />
 					<span id="result">{message}</span><br />
+					<span id="errors">{userError}{firstnameError}{lastnameError}{emailError}{passwordError}</span>
 				</p>
 			</div>
 		</div>
