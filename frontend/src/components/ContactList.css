@@ -1,0 +1,11 @@
+.contact-list
+{
+	display: flex;
+	flex-wrap: wrap;
+	overflow: auto;
+
+	height: 100%;
+	width: 100%; 
+
+	justify-content: center;
+}

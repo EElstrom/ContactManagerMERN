@@ -1,9 +1,9 @@
 import React from "react";
 
-const AddButton = ({}) => (
+const AddButton = (props) => (
   <svg class="rButtons" width="78" height="78" viewBox="0 0 78 78" fill="none" xmlns="http://www.w3.org/2000/svg">
   <g filter="url(#filter0_d)">
-  <circle cx="39" cy="35" r="35" fill="#4DA761"/>
+  <circle cx="39" cy="35" r="35" fill="#4DA761" onClick={props.onClick}/>
   </g>
   <path d="M39 17V52" stroke="white" stroke-width="5"/>
   <path d="M21 35H57" stroke="white" stroke-width="5"/>
@@ -21,10 +21,10 @@ const AddButton = ({}) => (
   </svg>
 );
 
-const LogoutButton = ({}) => (
+const LogoutButton = (props) => (
   <svg class="rButtons" width="78" height="78" viewBox="0 0 78 78" fill="none" xmlns="http://www.w3.org/2000/svg">
   <g filter="url(#filter0_d)">
-  <circle cx="39" cy="35" r="35" fill="white"/>
+  <circle cx="39" cy="35" r="35" fill="white" onClick={props.onClick}/>
   </g>
   <rect x="25" y="16" width="23" height="38" rx="3" stroke="#4DA761" stroke-width="4"/>
   <rect x="42" y="30" width="15" height="9" fill="white"/>

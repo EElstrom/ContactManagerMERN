@@ -36,6 +36,18 @@ const contactSchema = new mongoose.Schema(
 		type: [String],
 		required: false,
 		default: []
+	},
+	company:
+	{
+		type: String,
+		required: false,
+		default: ''
+	},
+	title:
+	{
+		type: String,
+		required: false,
+		default: ''
 	}
 });
 

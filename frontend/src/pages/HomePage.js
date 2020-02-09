@@ -1,40 +1,51 @@
 import React from 'react';
 
-import Contact from '../components/Contact';
 import RButtons from '../components/RButtons';
+import AddContact from '../components/AddContact';
 import '../components/Home.css';
 
-const HomePage = () =>
+import ContactList from '../components/ContactList';
+
+class HomePage extends React.Component
 {
-
-	// TODO: Create initialization function that calls /api/searchContacts and then creates a contact
-	//       component for each contact returned by the api. api will need authentication token from login
-	function initialize()
+	constructor(props)
 	{
-		const response = fetch('api/searchContacts', {
-		  method: 'POST',
-		  headers: {'Content-Type': 'application/json', 'Authorization': 'NEED_USER_API_TOKEN'},
-		  body: JSON.stringify({})
-		}).then(response => {return response.json()});
+		super(props);
 
-		console.log(response);
+		this.toggleAddContact = this.toggleAddContact.bind(this);
+		this.contactList = React.createRef();
+	}
 
-		var contact;
-		for (contact in response.contacts)
-		{
-			// Make contact components
-		}
-	};
+	toggleAddContact()
+	{
+		const addContact = document.getElementById('add-pop-up');
 
-	// Call this function to update contact components
-	initialize();
+		if (addContact.style.display === 'block')
+			addContact.style.display = 'none';
+		else
+			addContact.style.display = 'block';
 
-	return (
-		<div>
-			<Contact firstname='Justin' lastname='Miranda' phoneNumber='(123) 456-7890' email='bgates@msn.com'/>
-			<RButtons class="rButtons"/>
-		</div>
-	);
-};
+		this.contactList.current.loadContacts();
+	}
+
+	render()
+	{
+		return (
+			<div>
+				<div className='home-page' style={{position: 'fixed', display: 'flex', flexFlow: 'row nowrap', height: '100vh', width: '100vw'}}>
+					<div style={{position: 'static', height: '100vh'}}>
+						<RButtons toggleAddContact={this.toggleAddContact}/>
+					</div>
+					<div style={{position: 'static', height: '100vh', minWidth: '0'}}>
+						<ContactList ref={this.contactList}/>
+					</div>
+				</div>
+				<div id='add-pop-up' style={{display: 'none', position: 'fixed', width: '100vw', height: '100vh'}}>
+					<AddContact toggleAddContact={this.toggleAddContact}/>
+				</div>
+			</div>
+		);
+	}
+}
 
 export default HomePage;

@@ -2,7 +2,7 @@ import React from 'react';
 
 import Login from '../components/Login';
 
-const LoginPage = () =>
+const LoginPage = data =>
 {
 	return (
 		<div>

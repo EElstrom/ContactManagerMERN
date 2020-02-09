@@ -22,7 +22,9 @@ router.post('/api/editContact', function(req, res, next)
 {
 	console.log('Express: POST /api/editContact');
 
-	jwt.verify(req.headers.authorization, keys.secretOrKey, function(err, user)
+	const authToken = req.cookies.session;
+
+	jwt.verify(authToken, keys.secretOrKey, function(err, user)
 	{
 		if (err || !user)
 		{
@@ -46,6 +48,10 @@ router.post('/api/editContact', function(req, res, next)
 					update.email = req.body.email;
 				if (req.body.address)
 					update.address = req.body.address;
+				if (req.body.company)
+					update.company = req.body.company;
+				if (req.body.title)
+					update.title = req.body.title;
 
 				Contact.findOneAndUpdate({_id: req.body.id, userId: user.id}, update, function(err, contact)
 				{

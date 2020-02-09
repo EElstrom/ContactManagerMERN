@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser')
 
 const app = express();
 
@@ -9,6 +10,7 @@ const keys = require('./config/keys');
 // API Includes
 const register = require('./api/register');
 const login = require('./api/login');
+const logout = require('./api/logout');
 const addContact = require('./api/addContact');
 const editContact = require('./api/editContact');
 const deleteContact = require('./api/deleteContact');
@@ -22,6 +24,15 @@ mongoose.connect(keys.mongoURI, {useNewUrlParser: true, useUnifiedTopology: true
         .catch(err => console.error(err));
 
 app.use(bodyParser.json());
+app.use(cookieParser());
+
+app.use((req, res, next) => 
+{
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS');
+	next();
+});
 
 // Frontend Routes
 app.use(express.static('./frontend/build'));
@@ -31,9 +42,9 @@ app.get('*', function(req, res)
 });
 
 // API Routes
-// TODO: Update Database API to support Job-Title and Company contact fields
 app.use(register);
 app.use(login);
+app.use(logout);
 app.use(addContact);
 app.use(editContact);
 app.use(deleteContact);
