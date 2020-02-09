@@ -68,11 +68,11 @@ class Contact extends React.Component
 					<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:900"></link>
 					<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bree+Serif"></link>
 					<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans"></link>
-					<div className="contactHeader">{this.firstname} {this.lastname}&nbsp;</div>
-					<div className="contactInfo">{this.phoneNumber}&nbsp;</div>
-					<div className="contactInfo">{this.email}&nbsp;</div>
-					<div className="contactInfo">{this.company}&nbsp;</div>
-					<div className="contactInfo">{this.title}&nbsp;</div>
+					<div className="contactHeader">{this.firstname} {this.lastname}</div>
+					<div className="contactInfo">{this.phoneNumber}</div>
+					<div className="contactInfo">{this.email}</div>
+					<div className="contactInfo">{this.company}</div>
+					<div className="contactInfo">{this.title}</div>
 				</div>
 				<div>
 					<button id ='edit' style={{backgroundColor:'#4DA761', color:'#FFFFFF', marginLeft: '70%'}} onClick={() => this.editContact()}> EDIT </button>
