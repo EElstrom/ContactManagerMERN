@@ -15,7 +15,7 @@ const RButtons = (props) =>
     const doLogout = async() =>
     {
         // actually logout!
-		await fetch('api/logout', {
+		await fetch('/api/logout', {
 		  method: 'POST',
 		  headers: {'Content-Type': 'application/json'},
 		  credentials: 'same-origin',
