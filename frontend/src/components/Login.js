@@ -24,7 +24,6 @@ const Login = data =>
 		  body: JSON.stringify({username: username, password: password})
 		}).then(response => {return response.json()});
 
-		// Save response.token in local memory to use later 
 		if (response.success) {
 			// do login magic here
 			setMessage('Logged in');
