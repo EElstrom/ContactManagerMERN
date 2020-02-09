@@ -23,6 +23,10 @@ function validateInput(data)
 		fieldCount++;
 	if (!isEmpty(data.address) && data.address.length > 0 && !validator.isEmpty(data.address[0]))
 		fieldCount++;
+	if (!isEmpty(data.company) && !validator.isEmpty(data.company))
+		fieldCount++;
+	if (!isEmpty(data.title) &&  !validator.isEmpty(data.title))
+		fieldCount++;
 
 	if (fieldCount < 1)
 		errors.fieldCount = 'request must include at least one contact detail';
@@ -55,6 +59,8 @@ router.post('/api/addContact', function(req, res, next)
 				  phoneNumber: req.body.phoneNumber,
 				  email: req.body.email,
 				  address: req.body.address,
+				  company: req.body.company,
+				  title: req.body.title
 				});
 
 				Contact.create(newContact, function(err, contact)

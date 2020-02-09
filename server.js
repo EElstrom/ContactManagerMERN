@@ -10,6 +10,7 @@ const keys = require('./config/keys');
 // API Includes
 const register = require('./api/register');
 const login = require('./api/login');
+const logout = require('./api/logout');
 const addContact = require('./api/addContact');
 const editContact = require('./api/editContact');
 const deleteContact = require('./api/deleteContact');
@@ -41,9 +42,9 @@ app.get('*', function(req, res)
 });
 
 // API Routes
-// TODO: Update Database API to support Job-Title and Company contact fields
 app.use(register);
 app.use(login);
+app.use(logout);
 app.use(addContact);
 app.use(editContact);
 app.use(deleteContact);

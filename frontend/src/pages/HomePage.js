@@ -1,51 +1,88 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 
-import Contact from '../components/Contact';
+import RButtons from '../components/RButtons';
+import AddContact from '../components/AddContact';
+import EditContact from '../components/EditContact';
+import '../components/Home.css';
 
-const fetch = require('node-fetch');
+import ContactList from '../components/ContactList';
 
-const HomePage = data =>
+class HomePage extends React.Component
 {
-	const [contactComponents, setComponents] = useState(null);
-
-	var query = "";
-
-	// Call this function to update contact components
-	async function getContactComponents()
+	constructor(props)
 	{
-		// API Call
-		const response = await fetch('api/searchContacts', {
-		  method: 'POST',
-		  credentials: 'same-origin',
-		  headers: {'Content-Type': 'application/json'},
-		  body: JSON.stringify({
-		    "query": query,
-		    "sort_by": {"lastname": 1}
-		  })
-		}).then(response => {return response.json()});
+		super(props);
 
-		var index;
-		var contacts = [];
-		for (index in response.contacts)
-		{
-			// Make contact components
-			response.contacts[index].key = index;
-			contacts.push(Contact(response.contacts[index]));
-		}
+		this.toggleAddContact = this.toggleAddContact.bind(this);
+		this.toggleEditContact = this.toggleEditContact.bind(this);
 
-		setComponents(contacts);
+		this.editContact = new EditContact({contact: {}, toggleEditContact: this.toggleEditContact});
+
+		this.contactList = React.createRef();
 	}
 
-	if (contactComponents == null)
-		getContactComponents();
+	toggleAddContact()
+	{
+		const addContact = document.getElementById('add-pop-up');
 
-	return (
-		<div>
-			<Link to="/AddContact">Add a new Contact</Link><br />
-			{contactComponents}
-		</div>
-	);
-};
+		if (addContact.style.display === 'block')
+		{
+			addContact.style.display = 'none';
+			this.contactList.current.loadContacts();
+		}
+		else
+		{
+			addContact.style.display = 'block';
+		}
+	}
+
+	toggleEditContact(contact)
+	{
+		if (!contact)
+			return;
+
+		const editContactPopUp = document.getElementById('edit-pop-up');
+
+		if (editContactPopUp.style.display === 'block')
+		{
+			editContactPopUp.style.display = 'none';
+			this.contactList.current.loadContacts();
+		}
+		else
+		{
+			this.editContact.props.contact = contact;
+			editContactPopUp.style.display = 'block';
+			this.forceUpdate();
+		}
+	}
+
+	searchContacts()
+	{
+		var query = '';
+		this.contactList.current.loadContacts(query);
+	}
+
+	render()
+	{
+		return (
+			<div>
+				<div className='home-page' style={{position: 'fixed', display: 'flex', flexFlow: 'row nowrap', height: '100vh', width: '100vw'}}>
+					<div style={{position: 'static', height: '100vh'}}>
+						<RButtons toggleAddContact={this.toggleAddContact}/>
+					</div>
+					<div style={{position: 'static', height: '100vh', minWidth: '0'}}>
+						<ContactList ref={this.contactList} toggleEditContact={this.toggleEditContact}/>
+					</div>
+				</div>
+				<div id='add-pop-up' style={{display: 'none', position: 'fixed', width: '100vw', height: '100vh'}}>
+					<AddContact toggleAddContact={this.toggleAddContact}/>
+				</div>
+				<div id='edit-pop-up' style={{display: 'none', position: 'fixed', width: '100vw', height: '100vh'}}>
+					{this.editContact.render()}
+				</div>
+			</div>
+		);
+	}
+}
 
 export default HomePage;
