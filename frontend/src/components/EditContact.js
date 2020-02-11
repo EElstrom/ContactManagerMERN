@@ -58,6 +58,7 @@ class EditContact extends React.Component
 		return (
 			<div id="container">
 				<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:900"></link>
+				<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bree+Serif"></link>
 				<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:800"></link>
 				<div id="header">Edit Contact</div>
 				<div id="login">
@@ -69,8 +70,8 @@ class EditContact extends React.Component
 						<input className='addressBox' type="text" id="address" placeholder="address" defaultValue={this.props.contact.address} ref={(c) => this.address = c}/><br />
 						<input className='companyBox' type="text" id="company" placeholder="company" defaultValue={this.props.contact.company} ref={(c) => this.company = c}/><br />
 						<input className='titleBox' type="text" id="title" placeholder="title" defaultValue={this.props.contact.title} ref={(c) => this.title = c}/><br />
-						<input type="submit" id="button" className="buttons" value="EDIT"/>
-						<input type="button" id="button" className="buttons" value="CANCEL" onClick={() => this.props.toggleEditContact(this.props.contact)}/>
+						<input type="submit" id="button" style={{margin: '1.5% 1%', color: '#FFFFFF', backgroundColor: '#4DA761'}} className="buttons" value="EDIT"/>
+						<input type="button" id="button" style={{margin: '1.5% 1%', color: '#FFFFFF', backgroundColor: '#4DA761'}} className="buttons" value="CANCEL" onClick={() => this.props.toggleEditContact(this.props.contact)}/>
 					</form>
 					<p>
 						<span id="result">{this.message}</span><br />
