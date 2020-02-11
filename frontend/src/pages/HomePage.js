@@ -16,6 +16,7 @@ class HomePage extends React.Component
 		this.toggleAddContact = this.toggleAddContact.bind(this);
 		this.toggleEditContact = this.toggleEditContact.bind(this);
 
+		this.addContact = new AddContact({contact: {}, toggleAddContact: this.toggleAddContact});
 		this.editContact = new EditContact({contact: {}, toggleEditContact: this.toggleEditContact});
 
 		this.contactList = React.createRef();
@@ -56,24 +57,31 @@ class HomePage extends React.Component
 		}
 	}
 
-	searchContacts()
+	searchContacts(query)
 	{
-		var query = '';
+		if (!query)
+			query = '';
+
 		this.contactList.current.loadContacts(query);
 	}
 
 	render()
 	{
 		return (
-			<div>
-				<div className='rButtons'>
-					<RButtons toggleAddContact={this.toggleAddContact}/>
+			<div style={{display: 'block', position: 'fixed', width: '100vw', height: '100vh', overflow: 'auto'}}>
+				<div style={{display: 'flex', justifyContent: 'space-between', alignItem: 'center', position: 'fixed', width: '100vw'}}>
+					<input className='search-box' type='text' id='login' placeholder='search' onChange={(query) => this.searchContacts(query.target.value)}/>
+					<div className='rButtons'>
+						<RButtons toggleAddContact={this.toggleAddContact}/>
+					</div>
 				</div>
-				<ContactList ref={this.contactList} toggleEditContact={this.toggleEditContact}/>
-				<div id='add-pop-up' style={{display: 'none', position: 'fixed', width: '100vw'}}>
-					<AddContact toggleAddContact={this.toggleAddContact}/>
+				<div style={{display: 'block', marginTop: '150px'}}>
+					<ContactList ref={this.contactList} toggleEditContact={this.toggleEditContact}/>
 				</div>
-				<div id='edit-pop-up' style={{display: 'none', position: 'fixed', width: '100vw'}}>
+				<div id='add-pop-up' style={{display: 'none', position: 'fixed', top: '0px', left: '0px', width: '100vw'}}>
+					{this.addContact.render()}
+				</div>
+				<div id='edit-pop-up' style={{display: 'none', position: 'fixed', top: '0px', left: '0px', width: '100vw'}}>
 					{this.editContact.render()}
 				</div>
 			</div>

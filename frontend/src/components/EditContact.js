@@ -51,6 +51,7 @@ class EditContact extends React.Component
 		return (
 			<div id="popupContainer">
 				<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:900"></link>
+				<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bree+Serif"></link>
 				<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:800"></link>
 				<div id="header">Edit Contact</div>
 				<div id="contactPopup">

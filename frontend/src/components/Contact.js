@@ -63,7 +63,7 @@ class Contact extends React.Component
 	render()
 	{
 		return (
-			<div key={this.key}>
+			<div key={this.key} style={{height: '370px'}}>
 				<div id="contactCard">
 					<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:900"></link>
 					<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bree+Serif"></link>
