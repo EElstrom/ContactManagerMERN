@@ -2,6 +2,7 @@ import React from 'react';
 import './Login.css';
 import './Home.css';
 import './ContactList.css';
+import './Search.css';
 
 import Contact from '../components/Contact';
 
@@ -24,6 +25,7 @@ class ContactList extends React.Component
 			var searchElement = document.getElementById('search');
 			q = searchElement ? searchElement.value : '';
 		}
+    
 		var contacts = [];
 
 		// API Call

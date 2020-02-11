@@ -4,7 +4,7 @@ import './Login.css';
 
 const fetch = require('node-fetch');
 
-function Login()
+const Login = data =>
 {
 	var loginName;
 	var loginPassword;
@@ -26,14 +26,13 @@ function Login()
 		const username = loginName.value;
 		const password = loginPassword.value;
 
-		// TODO: change abs URL below
-		const response = await fetch('http://localhost:8000/api/login', {
+		console.log('api/login');
+
+		const response = await fetch('api/login', {
 		  method: 'POST',
 		  headers: {'Content-Type': 'application/json'},
 		  body: JSON.stringify({username: username, password: password})
 		}).then(response => {return response.json()});
-
-		console.log(JSON.stringify(response));
 
 		setMessage('');
 		setUserBox('large-text-box');
@@ -42,7 +41,6 @@ function Login()
 		setUserError('');
 		setPasswordError('');
 
-		// Save response.token in local memory to use later 
 		if (response.success) {
 			// do login magic here
 			setMessage('Logged in');
@@ -66,25 +64,25 @@ function Login()
 	};
 
 	return (
-		<div>
-		<div id="container">
-			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:900"></link>
-			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:800"></link>
-			<div id="header">Contact Manager</div>
-			<div id="login">
-				<form onSubmit={doLogin}>
-					<input class={userBox} type="text" id="username" placeholder="username" ref={(c) => loginName = c}/><br />
-					<input class={passwordBox}type="password" id="loginPassword" placeholder="password" ref={(c) => loginPassword = c}/><br />
-					<input type="submit" id="loginButton" class="buttons" value="SIGN IN" onClick={doLogin}/>
-				</form>
-				<p>
-					<Link to="/register">Register a new account</Link><br />
-					<span id="result">{message}</span><br />
-					<span id="errors">{loginError}{userError}{passwordError}</span>
+		<div id="login-page">
+			<div id="container">
+				<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:900"/>
+				<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:800"/>
+				<div id="header">Contact Manager</div>
+				<div id="login">
+					<form onSubmit={doLogin}>
+						<input className={userBox} type="text" id="username" placeholder="username" ref={(c) => loginName = c}/><br />
+						<input className={passwordBox} type="password" id="loginPassword" placeholder="password" ref={(c) => loginPassword = c}/><br />
+						<input type="submit" id="loginButton" className="buttons" value="SIGN IN"/>
+					</form>
+					<p>
+						<Link to="/register">Register a new account</Link><br />
+						<span id="result">{message}</span><br />
+						<span id="errors">{loginError}{userError}{passwordError}</span>
 
-				</p>
+					</p>
+				</div>
 			</div>
-		</div>
 		</div>
 	);
 };

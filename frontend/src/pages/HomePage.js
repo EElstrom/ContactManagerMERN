@@ -1,43 +1,59 @@
 import React from 'react';
 
-import Contact from '../components/Contact';
 import RButtons from '../components/RButtons';
+import AddContact from '../components/AddContact';
+import EditContact from '../components/EditContact';
 import '../components/Home.css';
 
-const HomePage = () =>
+import ContactList from '../components/ContactList';
+
+class HomePage extends React.Component
 {
-
-	// TODO: Create initialization function that calls /api/searchContacts and then creates a contact
-	//       component for each contact returned by the api. api will need authentication token from login
-	function initialize()
+	constructor(props)
 	{
-		const response = fetch('api/searchContacts', {
-		  method: 'POST',
-		  headers: {'Content-Type': 'application/json', 'Authorization': 'NEED_USER_API_TOKEN'},
-		  body: JSON.stringify({})
-		}).then(response => {return response.json()});
+		super(props);
 
-		console.log(response);
+		this.toggleAddContact = this.toggleAddContact.bind(this);
+		this.toggleEditContact = this.toggleEditContact.bind(this);
 
-		var contact;
-		for (contact in response.contacts)
+		this.editContact = new EditContact({contact: {}, toggleEditContact: this.toggleEditContact});
+
+		this.contactList = React.createRef();
+	}
+
+	toggleAddContact()
+	{
+		const addContact = document.getElementById('add-pop-up');
+
+		if (addContact.style.display === 'block')
 		{
-			// Make contact components
+			addContact.style.display = 'none';
+			this.contactList.current.loadContacts();
 		}
-<<<<<<< Updated upstream
-	};
+		else
+		{
+			addContact.style.display = 'block';
+		}
+	}
 
-	// Call this function to update contact components
-	initialize();
+	toggleEditContact(contact)
+	{
+		if (!contact)
+			return;
 
-	return (
-		<div>
-			<Contact firstname='Justin' lastname='Miranda' phoneNumber='(123) 456-7890' email='bgates@msn.com'/>
-			<RButtons class="rButtons"/>
-		</div>
-	);
-};
-=======
+		const editContactPopUp = document.getElementById('edit-pop-up');
+
+		if (editContactPopUp.style.display === 'block')
+		{
+			editContactPopUp.style.display = 'none';
+			this.contactList.current.loadContacts();
+		}
+		else
+		{
+			this.editContact.props.contact = contact;
+			editContactPopUp.style.display = 'block';
+			this.forceUpdate();
+		}
 	}
 
 	searchContacts()
@@ -50,14 +66,10 @@ const HomePage = () =>
 	{
 		return (
 			<div>
-				<div className='home-page' style={{position: 'fixed', display: 'flex', flexFlow: 'row nowrap', height: '100vh', width: '100vw'}}>
-					<div style={{position: 'static', height: '100vh'}}>
-						<RButtons toggleAddContact={this.toggleAddContact}/>
-					</div>
-					<div style={{position: 'static', height: '100vh', minWidth: '0'}}>
-						<ContactList ref={this.contactList} toggleEditContact={this.toggleEditContact}/>
-					</div>
+				<div className='rButtons'>
+					<RButtons toggleAddContact={this.toggleAddContact}/>
 				</div>
+				<ContactList ref={this.contactList} toggleEditContact={this.toggleEditContact}/>
 				<div id='add-pop-up' style={{display: 'none', position: 'fixed', width: '100vw'}}>
 					<AddContact toggleAddContact={this.toggleAddContact}/>
 				</div>
@@ -68,6 +80,4 @@ const HomePage = () =>
 		);
 	}
 }
->>>>>>> Stashed changes
-
 export default HomePage;

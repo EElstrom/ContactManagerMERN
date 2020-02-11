@@ -11,6 +11,7 @@ function Register()
 	var lastname;
 	var email;
 	var password;
+	var password2;
 	
 	const [message,setMessage] = useState('');
 	
@@ -31,8 +32,6 @@ function Register()
 	{
 		event.preventDefault();
 
-<<<<<<< Updated upstream
-=======
 		setUserBox('large-text-box');
 		setFirstnameBox('large-text-box');
 		setLastnameBox('large-text-box');
@@ -54,7 +53,6 @@ function Register()
 			return;
 		}
 
->>>>>>> Stashed changes
 		username = username.value;
 		firstname = firstname.value;
 		lastname = lastname.value;
@@ -112,12 +110,13 @@ function Register()
 			<div id="header">Contact Manager</div>
 			<div id="login">
 				<form onSubmit={doRegister}>
-					<input class={userBox} type="text" id="username" placeholder="username" ref={(c) => username = c}/><br />
-					<input class={firstnameBox} type="text" id="firstname" placeholder="first name" ref={(c) => firstname = c}/><br />
-					<input class={lastnameBox} type="text" id="lastname" placeholder="last name" ref={(c) => lastname = c}/><br />
-					<input class={emailBox} type="text" id="email" placeholder="email address" ref={(c) => email = c}/><br />
-					<input class={passwordBox} type="password" id="password" placeholder="password" ref={(c) => password = c}/><br />
-					<input type="submit" id="loginButton" class="buttons" value="REGISTER" onClick={doRegister}/>
+					<input className={userBox} type="text" id="username" placeholder="username" ref={(c) => username = c}/><br />
+					<input className={firstnameBox} type="text" id="firstname" placeholder="first name" ref={(c) => firstname = c}/><br />
+					<input className={lastnameBox} type="text" id="lastname" placeholder="last name" ref={(c) => lastname = c}/><br />
+					<input className={emailBox} type="text" id="email" placeholder="email address" ref={(c) => email = c}/><br />
+					<input className={passwordBox} type="password" id="password" placeholder="password" ref={(c) => password = c}/><br />
+					<input className={passwordBox} type="password" id="password" placeholder="confirm password" ref={(c) => password2 = c}/><br />
+					<input type="submit" id="loginButton" className="buttons" value="REGISTER"/>
 				</form>
 				<p>
 					<Link to="/login">Log in</Link><br />

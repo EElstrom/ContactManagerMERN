@@ -22,30 +22,6 @@ class EditContact extends React.Component
 		contact.company = (!isEmpty(this.company.value)) ? this.company.value : '';
 		contact.title = (!isEmpty(this.title.value)) ? this.title.value : '';
 
-/*
-		if (!isEmpty(this.firstname.value))
-			contact.firstname = this.firstname.value;
-		if (!isEmpty(this.lastname.value))
-			contact.lastname = this.lastname.value;
-
-		if (!isEmpty(this.phoneNumber.value))
-			contact.phoneNumber = this.phoneNumber.value;
-		else
-			contact.phoneNumber = [];
-		if (!isEmpty(this.email.value))
-			contact.email = this.email.value;
-		else
-			contact.email = []
-		if (!isEmpty(this.address.value))
-			contact.address = this.address.value;
-		else
-			contact.address = []
-
-		if (!isEmpty(this.company.value))
-			contact.company = this.company.value;
-		if (!isEmpty(this.title.value))
-			contact.title = this.title.value;
-*/
 		const response = await fetch('api/editContact', {
 		  method: 'POST',
 		  headers: {'Content-Type': 'application/json'},
