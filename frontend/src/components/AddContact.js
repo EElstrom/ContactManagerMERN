@@ -43,6 +43,9 @@ class AddContact extends React.Component
 		if (response.success) {
 			this.setState({message: this.firstname.value + ' ' + this.lastname.value + ' added successfully!'});
 			this.props.toggleAddContact();
+
+			this.firstname = '';
+			this.forceUpdate();
 		}
 		else {
 			var errors = response.errors;
