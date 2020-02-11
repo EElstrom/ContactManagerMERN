@@ -44,8 +44,13 @@ class AddContact extends React.Component
 			this.setState({message: this.firstname.value + ' ' + this.lastname.value + ' added successfully!'});
 			this.props.toggleAddContact();
 
-			this.firstname = '';
-			this.forceUpdate();
+			document.getElementById('firstname').value = '';
+			document.getElementById('lastname').value = '';
+			document.getElementById('phoneNumber').value = '';
+			document.getElementById('email').value = '';
+			document.getElementById('address').value = '';
+			document.getElementById('company').value = '';
+			document.getElementById('title').value = '';
 		}
 		else {
 			var errors = response.errors;

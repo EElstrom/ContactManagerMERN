@@ -1,7 +1,7 @@
 .contact-list {
 	display: flex;
 	flex-direction: row;
-	justify-content: center;
+	justify-content: flex-start;
 	flex-wrap: wrap;
 	overflow: auto;
 }
@@ -24,7 +24,7 @@
 	max-width: 70%;
 	height: 3em;
 	background-color: #FFFFFF;
-	margin: 48px 30px 0px 30px;
+	margin: 48px 20px 0px 20px;
 
 	border-style: solid;
 
