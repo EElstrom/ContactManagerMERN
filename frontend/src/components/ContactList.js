@@ -1,7 +1,6 @@
 import React from 'react';
 import './Login.css';
 import './Home.css';
-import './ContactList.css';
 import './Search.css';
 
 import Contact from '../components/Contact';
