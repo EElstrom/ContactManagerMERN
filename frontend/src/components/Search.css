@@ -18,8 +18,14 @@
 	outline: none;
 	padding-left: 20px;
 	border-radius: 5px;
-	width: 20em;
+	width: 45em;
 	max-width: 70%;
 	height: 3em;
 	background-color: #FFFFFF;
+	margin: 20px 0px 0px 20px;
+
+	font-family: 'Open Sans', verdana, arial, helvetica, sans-serif;
+	color: #757575;
+	font-weight: bold;
+	font-size: 14pt;
 }

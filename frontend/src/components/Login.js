@@ -64,25 +64,25 @@ const Login = data =>
 	};
 
 	return (
-		<div>
-		<div id="container">
-			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:900"></link>
-			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:800"></link>
-			<div id="header">Contact Manager</div>
-			<div id="login">
-				<form onSubmit={doLogin}>
-					<input className={userBox} type="text" id="username" placeholder="username" ref={(c) => loginName = c}/><br />
-					<input className={passwordBox} type="password" id="loginPassword" placeholder="password" ref={(c) => loginPassword = c}/><br />
-					<input type="submit" id="loginButton" className="buttons" value="SIGN IN"/>
-				</form>
-				<p>
-					<Link to="/register">Register a new account</Link><br />
-					<span id="result">{message}</span><br />
-					<span id="errors">{loginError}{userError}{passwordError}</span>
+		<div id="login-page">
+			<div id="container">
+				<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:900"/>
+				<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:800"/>
+				<div id="header">Contact Manager</div>
+				<div id="login">
+					<form onSubmit={doLogin}>
+						<input className={userBox} type="text" id="username" placeholder="username" ref={(c) => loginName = c}/><br />
+						<input className={passwordBox} type="password" id="loginPassword" placeholder="password" ref={(c) => loginPassword = c}/><br />
+						<input type="submit" id="loginButton" className="buttons" value="SIGN IN"/>
+					</form>
+					<p>
+						<Link to="/register">Register a new account</Link><br />
+						<span id="result">{message}</span><br />
+						<span id="errors">{loginError}{userError}{passwordError}</span>
 
-				</p>
+					</p>
+				</div>
 			</div>
-		</div>
 		</div>
 	);
 };

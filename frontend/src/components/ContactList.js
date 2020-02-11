@@ -65,7 +65,8 @@ class ContactList extends React.Component
 
 		return (
 			<div className='contact-search'>
-				<input className='search-box' type='text' id='search' placeholder='Search' onChange={(query) => this.loadContacts(query.target.value)}/><br />
+				<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:800"/>
+				<input class='search-box' type='text' id='login' placeholder='search' onChange={(query) => this.loadContacts(query.target.value)}/><br />
 				<div className='contact-list'>{components}</div>
 			</div>
 		);
