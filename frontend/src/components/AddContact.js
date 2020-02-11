@@ -1,6 +1,9 @@
 import React from 'react';
+import Toast from './Toast.js'
+
 const fetch = require('node-fetch');
 const isEmpty = require('is-empty');
+
 //const [message, setMessage] = useState('');
 
 //I have no idea what I'm doing
@@ -15,10 +18,26 @@ export default class AddContact extends React.Component {
                       address: "",
                       company: "",
                       title: "",
-		      message: ""};
+		              message: "",
+                      toastV: false,
+                      toastMessage: "",
+                      toastType: 'success'};
 		this.handleChange = this.handleChange.bind(this);
-        	this.AddContacts = this.AddContacts.bind(this);
+        this.AddContacts = this.AddContacts.bind(this);
 		this.reset = this.reset.bind(this);
+        this.onError = this.onError.bind(this);
+        this.LEAVEMYSIGHT = this.LEAVEMYSIGHT.bind(this);
+    }
+
+    onError(message) {
+        this.setState({
+            toastV: true,
+            toastMessage: message,
+            toastType: "danger"});
+    }
+
+    LEAVEMYSIGHT(){
+        this.setState({toastV: false});
     }
 
     handleChange(event){
@@ -36,7 +55,10 @@ export default class AddContact extends React.Component {
             address: "",
             company: "",
             title:"",
-            message: ""});
+            message: "",
+            toastV: false,
+            toastMessage: "",
+            toastType: "success"});
 	this.myFormRef.reset();
 	this.props.toggleAddContact.call();
     }
@@ -86,11 +108,12 @@ export default class AddContact extends React.Component {
         }
         else {
             var errors = response.errors;
-            this.setState({message: JSON.stringify(errors)});
+            this.onError(JSON.stringify(errors));
         }
     }
 
     render() {
+        const {toastV, toastMessage, toastType} = this.state;
         //That sweet sweet format from original AddContact
         return(
             <div id="container">
@@ -113,6 +136,10 @@ export default class AddContact extends React.Component {
                                         <span id="result">{this.state.message}</span><br />
                                 </p>
                         </div>
+                        <Toast
+                            showing={toastV}
+                            onDismiss={this.LEAVEMYSIGHT}
+                            bsStyle={toastType}>{toastMessage}</Toast>
                 </div>
 
         );
