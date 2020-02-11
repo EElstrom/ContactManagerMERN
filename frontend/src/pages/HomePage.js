@@ -67,13 +67,13 @@ class HomePage extends React.Component
 	{
 		return (
 			<div style={{display: 'block', position: 'fixed', width: '100vw', height: '100vh', overflow: 'auto'}}>
-				<div style={{display: 'flex', width: '100vw'}}>
+				<div style={{display: 'flex', position: 'fixed', width: '100vw'}}>
 					<input className='search-box' type='text' id='login' placeholder='search' onChange={(query) => this.loadContacts(query.target.value)}/>
 					<div className='rButtons'>
 						<RButtons toggleAddContact={this.toggleAddContact}/>
 					</div>
 				</div>
-				<div style={{display: 'block'}}>
+				<div style={{display: 'block', marginTop: '150px'}}>
 					<ContactList ref={this.contactList} toggleEditContact={this.toggleEditContact}/>
 				</div>
 				<div id='add-pop-up' style={{display: 'none', position: 'fixed', top: '0px', left: '0px', width: '100vw', height: '100vh'}}>
