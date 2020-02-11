@@ -65,10 +65,9 @@ class HomePage extends React.Component
 	render()
 	{
 		return (
-			<div>
 				<div className='rButtons'>
 					<RButtons toggleAddContact={this.toggleAddContact}/>
-				</div>
+				<div/>
 				<ContactList ref={this.contactList} toggleEditContact={this.toggleEditContact}/>
 				<div id='add-pop-up' style={{display: 'none', position: 'fixed', width: '100vw', height: '100vh'}}>
 					<AddContact toggleAddContact={this.toggleAddContact}/>
