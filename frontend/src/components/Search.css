@@ -1,0 +1,25 @@
+.contact-list {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	overflow: auto;
+}
+
+.contact-search
+{
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	overflow: auto;
+}
+
+.search-box {
+	border-color: transparent;
+	outline: none;
+	padding-left: 20px;
+	border-radius: 5px;
+	width: 20em;
+	max-width: 70%;
+	height: 3em;
+	background-color: #FFFFFF;
+}
