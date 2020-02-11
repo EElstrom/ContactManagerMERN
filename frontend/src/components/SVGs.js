@@ -1,7 +1,7 @@
 import React from "react";
 
 const AddButton = (props) => (
-  <svg className="rButtons" width="78" height="78" viewBox="0 0 78 78" fill="none" xmlns="http://www.w3.org/2000/svg" onClick={props.onClick}>
+  <svg className="indButton" width="78" height="78" viewBox="0 0 78 78" fill="none" xmlns="http://www.w3.org/2000/svg" onClick={props.onClick}>
   <g filter="url(#filter0_d)">
   <circle cx="39" cy="35" r="35" fill="#4DA761"/>
   </g>
@@ -22,7 +22,7 @@ const AddButton = (props) => (
 );
 
 const LogoutButton = (props) => (
-  <svg className="rButtons" width="78" height="78" viewBox="0 0 78 78" fill="none" xmlns="http://www.w3.org/2000/svg" onClick={props.onClick}>
+  <svg className="indButton" width="78" height="78" viewBox="0 0 78 78" fill="none" xmlns="http://www.w3.org/2000/svg" onClick={props.onClick}>
   <g filter="url(#filter0_d)">
   <circle cx="39" cy="35" r="35" fill="white"/>
   </g>
