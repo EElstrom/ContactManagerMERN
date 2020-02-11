@@ -23,7 +23,7 @@
 	display: inline-block;
 	flex-direction: column;
 	align-items: flex-end;
-	margin: 30px 30px;
+	margin: 30px 5% 30px 30px;
 }
 
 .indButton {
