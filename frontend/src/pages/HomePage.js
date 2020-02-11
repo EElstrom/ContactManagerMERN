@@ -66,14 +66,10 @@ class HomePage extends React.Component
 	{
 		return (
 			<div>
-				<div className='home-page' style={{position: 'fixed', display: 'flex', flexFlow: 'row nowrap', height: '100vh', width: '100vw'}}>
-					<div style={{position: 'static', height: '100vh'}}>
-						<RButtons toggleAddContact={this.toggleAddContact}/>
-					</div>
-					<div style={{position: 'static', height: '100vh', minWidth: '0'}}>
-						<ContactList ref={this.contactList} toggleEditContact={this.toggleEditContact}/>
-					</div>
+				<div className='rButtons'>
+					<RButtons toggleAddContact={this.toggleAddContact}/>
 				</div>
+				<ContactList ref={this.contactList} toggleEditContact={this.toggleEditContact}/>
 				<div id='add-pop-up' style={{display: 'none', position: 'fixed', width: '100vw', height: '100vh'}}>
 					<AddContact toggleAddContact={this.toggleAddContact}/>
 				</div>
