@@ -24,6 +24,7 @@ const HomePage = () =>
 		{
 			// Make contact components
 		}
+<<<<<<< Updated upstream
 	};
 
 	// Call this function to update contact components
@@ -36,5 +37,37 @@ const HomePage = () =>
 		</div>
 	);
 };
+=======
+	}
+
+	searchContacts()
+	{
+		var query = '';
+		this.contactList.current.loadContacts(query);
+	}
+
+	render()
+	{
+		return (
+			<div>
+				<div className='home-page' style={{position: 'fixed', display: 'flex', flexFlow: 'row nowrap', height: '100vh', width: '100vw'}}>
+					<div style={{position: 'static', height: '100vh'}}>
+						<RButtons toggleAddContact={this.toggleAddContact}/>
+					</div>
+					<div style={{position: 'static', height: '100vh', minWidth: '0'}}>
+						<ContactList ref={this.contactList} toggleEditContact={this.toggleEditContact}/>
+					</div>
+				</div>
+				<div id='add-pop-up' style={{display: 'none', position: 'fixed', width: '100vw'}}>
+					<AddContact toggleAddContact={this.toggleAddContact}/>
+				</div>
+				<div id='edit-pop-up' style={{display: 'none', position: 'fixed', width: '100vw'}}>
+					{this.editContact.render()}
+				</div>
+			</div>
+		);
+	}
+}
+>>>>>>> Stashed changes
 
 export default HomePage;
