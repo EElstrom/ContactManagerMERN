@@ -11,9 +11,9 @@ class AddContact extends React.Component
 		super(props);
 
 		this.state = {
-      message: '',
-      errors: ''
-    };
+			message: '',
+			errors: ''
+		};
 	}
 
 	doAddContact = async event =>
@@ -57,9 +57,8 @@ class AddContact extends React.Component
 			document.getElementById('title').value = '';
 		}
 		else {
-			setMessage('');
 			var errors = response.errors;
-      this.setState({message: '', errors: Object.values(errors)});
+			this.setState({message: '', errors: Object.values(errors)});
 		}
 
 	};
