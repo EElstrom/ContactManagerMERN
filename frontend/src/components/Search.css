@@ -1,0 +1,33 @@
+.contact-list {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	overflow: auto;
+}
+
+.contact-search {
+	position: static;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	overflow: auto;
+}
+
+.search-box {
+	display: inline-block;
+	border-color: #DDDDDD;
+	outline: none;
+	padding-left: 20px;
+	border-radius: 5px;
+	width: 45em;
+	max-width: 70%;
+	height: 3em;
+	background-color: #FFFFFF;
+	margin: 48px 20px 0px 20px;
+	border-style: solid;
+	font-family: 'Open Sans', verdana, arial, helvetica, sans-serif;
+	color: #757575;
+	font-weight: bold;
+	font-size: 14pt;
+}

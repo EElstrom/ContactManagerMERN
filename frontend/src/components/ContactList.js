@@ -1,7 +1,7 @@
 import React from 'react';
 import './Login.css';
 import './Home.css';
-import './ContactList.css';
+import './Search.css';
 
 import Contact from '../components/Contact';
 
@@ -20,9 +20,11 @@ class ContactList extends React.Component
 
 	async loadContacts(q)
 	{
-		if (!q)
-			q = '';
-
+		if (!q) {
+			var searchElement = document.getElementById('search');
+			q = searchElement ? searchElement.value : '';
+		}
+    
 		var contacts = [];
 
 		// API Call
@@ -64,13 +66,9 @@ class ContactList extends React.Component
 		}
 
 		return (
-			<div style={{height: '100vh', width: '100%'}}>
-				<div style={{display: 'flex', justifyContent: 'center', backgroundColor: 'transparent'}}>
-					<input className='searchBox' type='text' id='search' placeholder='Search' onChange={(query) => this.loadContacts(query.target.value)}/><br />
-				</div>
-				<div className='contact-list'>
-					{components}
-				</div>
+			<div className='contact-search'>
+				<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:800"/>
+				<div className='contact-list'>{components}</div>
 			</div>
 		);
 	}

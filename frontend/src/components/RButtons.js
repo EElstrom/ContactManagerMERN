@@ -30,8 +30,8 @@ const RButtons = (props) =>
     // return render(<Buttons />, document.getElementById("root"));
     return (
         <div>
-            <LogoutButton className="rButtons" onClick={() => doLogout()}/>
-            <AddButton className="rButtons" onClick={() => doAdd()}/>
+            <LogoutButton onClick={() => doLogout()}/>
+            <AddButton onClick={() => doAdd()}/>
         </div>
     );
 };

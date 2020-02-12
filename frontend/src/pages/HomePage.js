@@ -15,7 +15,7 @@ class HomePage extends React.Component
 
 		this.toggleAddContact = this.toggleAddContact.bind(this);
 		this.toggleEditContact = this.toggleEditContact.bind(this);
-
+		this.addContact = new AddContact({contact: {}, toggleAddContact: this.toggleAddContact});
 		this.editContact = new EditContact({contact: {}, toggleEditContact: this.toggleEditContact});
 
 		this.contactList = React.createRef();
@@ -42,7 +42,6 @@ class HomePage extends React.Component
 			return;
 
 		const editContactPopUp = document.getElementById('edit-pop-up');
-
 		if (editContactPopUp.style.display === 'block')
 		{
 			editContactPopUp.style.display = 'none';
@@ -56,33 +55,35 @@ class HomePage extends React.Component
 		}
 	}
 
-	searchContacts()
+	searchContacts(query)
 	{
-		var query = '';
+		if (!query)
+			query = '';
+
 		this.contactList.current.loadContacts(query);
 	}
 
 	render()
 	{
 		return (
-			<div>
-				<div className='home-page' style={{position: 'fixed', display: 'flex', flexFlow: 'row nowrap', height: '100vh', width: '100vw'}}>
-					<div style={{position: 'static', height: '100vh'}}>
+			<div style={{display: 'block', position: 'fixed', width: '100vw', height: '100vh', overflow: 'auto'}}>
+				<div style={{display: 'flex', justifyContent: 'space-between', alignItem: 'center', position: 'fixed', width: '100vw'}}>
+					<input className='search-box' type='text' id='login' placeholder='search' onChange={(query) => this.searchContacts(query.target.value)}/>
+					<div className='rButtons'>
 						<RButtons toggleAddContact={this.toggleAddContact}/>
 					</div>
-					<div style={{position: 'static', height: '100vh', minWidth: '0'}}>
-						<ContactList ref={this.contactList} toggleEditContact={this.toggleEditContact}/>
-					</div>
 				</div>
-				<div id='add-pop-up' style={{display: 'none', position: 'fixed', width: '100vw', height: '100vh'}}>
-					<AddContact toggleAddContact={this.toggleAddContact}/>
+				<div style={{display: 'block', marginTop: '150px'}}>
+					<ContactList ref={this.contactList} toggleEditContact={this.toggleEditContact}/>
 				</div>
-				<div id='edit-pop-up' style={{display: 'none', position: 'fixed', width: '100vw', height: '100vh'}}>
+				<div id='add-pop-up' style={{display: 'none', position: 'fixed', top: '0px', left: '0px', width: '100vw'}}>
+					{this.addContact.render()}
+				</div>
+				<div id='edit-pop-up' style={{display: 'none', position: 'fixed', top: '0px', left: '0px', width: '100vw'}}>
 					{this.editContact.render()}
 				</div>
 			</div>
 		);
 	}
 }
-
 export default HomePage;
