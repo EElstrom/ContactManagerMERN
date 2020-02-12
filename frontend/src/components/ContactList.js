@@ -20,9 +20,11 @@ class ContactList extends React.Component
 
 	async loadContacts(q)
 	{
-		if (!q)
-			q = '';
-
+		if (!q) {
+			var searchElement = document.getElementById('search');
+			q = searchElement ? searchElement.value : '';
+		}
+    
 		var contacts = [];
 
 		// API Call
@@ -66,7 +68,6 @@ class ContactList extends React.Component
 		return (
 			<div className='contact-search'>
 				<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:800"/>
-				{/*<input className='search-box' type='text' id='login' placeholder='search' onChange={(query) => this.loadContacts(query.target.value)}/><br />*/}
 				<div className='contact-list'>{components}</div>
 			</div>
 		);

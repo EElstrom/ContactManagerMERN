@@ -1,4 +1,5 @@
 import React from 'react';
+import './ContactPopup.css';
 
 const fetch = require('node-fetch');
 const isEmpty = require('is-empty');
@@ -9,7 +10,10 @@ class AddContact extends React.Component
 	{
 		super(props);
 
-		this.state = {message: ''};
+		this.state = {
+			message: '',
+			errors: ''
+		};
 	}
 
 	doAddContact = async event =>
@@ -41,7 +45,7 @@ class AddContact extends React.Component
 		}).then(response => {return response.json()});
 		
 		if (response.success) {
-			this.setState({message: this.firstname.value + ' ' + this.lastname.value + ' added successfully!'});
+			this.setState({message: this.firstname.value + ' ' + this.lastname.value + ' added successfully!', errors: ''});
 			this.props.toggleAddContact();
 
 			document.getElementById('firstname').value = '';
@@ -54,7 +58,7 @@ class AddContact extends React.Component
 		}
 		else {
 			var errors = response.errors;
-			this.setState({message: JSON.stringify(errors)});
+			this.setState({message: '', errors: Object.values(errors)});
 		}
 
 	};
@@ -62,25 +66,26 @@ class AddContact extends React.Component
 	render()
 	{
 		return (
-			<div id="container">
+			<div id="popupContainer">
 				<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:900"></link>
 				<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bree+Serif"></link>
 				<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:800"></link>
 				<div id="header">Add a new Contact</div>
-				<div id="login">
-					<form onSubmit={this.doAddContact}>
-						<input className='firstnameBox' type="text" id="firstname" placeholder="first name" ref={(c) => this.firstname = c}/><br />
-						<input className='lastnameBox' type="text" id="lastname" placeholder="last name" ref={(c) => this.lastname = c}/><br />
-						<input className='phoneNumberBox' type="text" id="phoneNumber" placeholder="phone number" ref={(c) => this.phoneNumber = c}/><br />
-						<input className='emailBox' type="text" id="email" placeholder="email address" ref={(c) => this.email = c}/><br />
-						<input className='addressBox' type="text" id="address" placeholder="address" ref={(c) => this.address = c}/><br />
-						<input className='companyBox' type="text" id="company" placeholder="company" ref={(c) => this.company = c}/><br />
-						<input className='titleBox' type="text" id="title" placeholder="title" ref={(c) => this.title = c}/><br />
-						<input type="submit" id="button" style={{margin: '1.5% 1%', color: '#FFFFFF', backgroundColor: '#4DA761'}} className="buttons" value="ADD"/>
-						<input type="button" id="button" style={{margin: '1.5% 1%', color: '#FFFFFF', backgroundColor: '#4DA761'}} className="buttons" value="CANCEL" onClick={() => this.props.toggleAddContact()}/>
+				<div id="contactPopup">
+					<form id="addForm" onSubmit={this.doAddContact}>
+						<input className='small-text-box' type="text" id="firstname" placeholder="first name" ref={(c) => this.firstname = c}/><br />
+						<input className='small-text-box' type="text" id="lastname" placeholder="last name" ref={(c) => this.lastname = c}/><br />
+						<input className='small-text-box' type="text" id="phoneNumber" placeholder="phone number" ref={(c) => this.phoneNumber = c}/><br />
+						<input className='small-text-box' type="text" id="email" placeholder="email address" ref={(c) => this.email = c}/><br />
+						<input className='small-text-box' type="text" id="address" placeholder="address" ref={(c) => this.address = c}/><br />
+						<input className='small-text-box' type="text" id="company" placeholder="company" ref={(c) => this.company = c}/><br />
+						<input className='small-text-box' type="text" id="title" placeholder="title" ref={(c) => this.title = c}/><br />
+						<input type="submit" id="button" className="buttons" value="ADD"/>
+						<input type="reset" id="button" className="buttons" value="CANCEL" onClick={() => this.props.toggleAddContact()}/>
 					</form>
 					<p>
 						<span id="result">{this.state.message}</span><br />
+            <span id="errors">{this.state.errors}</span>
 					</p>
 				</div>
 			</div>

@@ -15,7 +15,6 @@ class HomePage extends React.Component
 
 		this.toggleAddContact = this.toggleAddContact.bind(this);
 		this.toggleEditContact = this.toggleEditContact.bind(this);
-
 		this.addContact = new AddContact({contact: {}, toggleAddContact: this.toggleAddContact});
 		this.editContact = new EditContact({contact: {}, toggleEditContact: this.toggleEditContact});
 
@@ -43,7 +42,6 @@ class HomePage extends React.Component
 			return;
 
 		const editContactPopUp = document.getElementById('edit-pop-up');
-
 		if (editContactPopUp.style.display === 'block')
 		{
 			editContactPopUp.style.display = 'none';
@@ -78,15 +76,14 @@ class HomePage extends React.Component
 				<div style={{display: 'block', marginTop: '150px'}}>
 					<ContactList ref={this.contactList} toggleEditContact={this.toggleEditContact}/>
 				</div>
-				<div id='add-pop-up' style={{display: 'none', position: 'fixed', top: '0px', left: '0px', width: '100vw', height: '100vh'}}>
+				<div id='add-pop-up' style={{display: 'none', position: 'fixed', top: '0px', left: '0px', width: '100vw'}}>
 					{this.addContact.render()}
 				</div>
-				<div id='edit-pop-up' style={{display: 'none', position: 'fixed', top: '0px', left: '0px', width: '100vw', height: '100vh'}}>
+				<div id='edit-pop-up' style={{display: 'none', position: 'fixed', top: '0px', left: '0px', width: '100vw'}}>
 					{this.editContact.render()}
 				</div>
 			</div>
 		);
 	}
 }
-
 export default HomePage;

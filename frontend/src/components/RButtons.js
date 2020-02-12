@@ -11,8 +11,6 @@ const RButtons = (props) =>
     {
         // switch to add contact screen
         //window.location.replace("/register");
-		console.log('doAdd');
-
 		props.toggleAddContact();
     };
 

@@ -26,14 +26,29 @@ function Register()
 	const [lastnameError, setLastnameError] = useState('');
 	const [emailError, setEmailError] = useState('');
 	const [passwordError, setPasswordError] = useState('');
+	const [passwordMatchError, setPasswordMatchError] = useState('');
 
 	const doRegister = async event =>
 	{
 		event.preventDefault();
 
+		setUserBox('large-text-box');
+		setFirstnameBox('large-text-box');
+		setLastnameBox('large-text-box');
+		setEmailBox('large-text-box');
+		setPasswordBox('large-text-box');
+
+		setMessage('');
+		setUserError('');
+		setFirstnameError('');
+		setLastnameError('');
+		setEmailError('');
+		setPasswordError('');
+		setPasswordMatchError('');
+
 		if (password.value !== password2.value)
 		{
-			setMessage('Password does not match');
+			setPasswordMatchError('Password does not match');
 			setPasswordBox('large-error-box');
 			return;
 		}
@@ -58,19 +73,6 @@ function Register()
 
 		console.log(JSON.stringify(response));
 		
-		setUserBox('large-text-box');
-		setFirstnameBox('large-text-box');
-		setLastnameBox('large-text-box');
-		setEmailBox('large-text-box');
-		setPasswordBox('large-text-box');
-
-		setMessage('');
-		setUserError('');
-		setFirstnameError('');
-		setLastnameError('');
-		setEmailError('');
-		setPasswordError('');
-
 		if (response.success) {
 			setMessage('Registered');
 			// do registration magic here
@@ -119,7 +121,7 @@ function Register()
 				<p>
 					<Link to="/login">Log in</Link><br />
 					<span id="result">{message}</span><br />
-					<span id="errors">{userError}{firstnameError}{lastnameError}{emailError}{passwordError}</span>
+					<span id="errors">{userError}{firstnameError}{lastnameError}{emailError}{passwordError}{passwordMatchError}</span>
 				</p>
 			</div>
 		</div>
