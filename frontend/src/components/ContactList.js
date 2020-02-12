@@ -68,11 +68,6 @@ class ContactList extends React.Component
 		return (
 			<div className='contact-search'>
 				<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:800"/>
-<<<<<<< Updated upstream
-				{/*<input className='search-box' type='text' id='login' placeholder='search' onChange={(query) => this.loadContacts(query.target.value)}/><br />*/}
-=======
-				<input class='search-box' type='text' id='login' placeholder='search' onChange={(query) => this.loadContacts(query.target.value)}/><br />
->>>>>>> Stashed changes
 				<div className='contact-list'>{components}</div>
 			</div>
 		);

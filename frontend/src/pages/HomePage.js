@@ -15,8 +15,6 @@ class HomePage extends React.Component
 
 		this.toggleAddContact = this.toggleAddContact.bind(this);
 		this.toggleEditContact = this.toggleEditContact.bind(this);
-<<<<<<< Updated upstream
-
 		this.addContact = new AddContact({contact: {}, toggleAddContact: this.toggleAddContact});
 		this.editContact = new EditContact({contact: {}, toggleEditContact: this.toggleEditContact});
 
@@ -43,36 +41,7 @@ class HomePage extends React.Component
 		if (!contact)
 			return;
 
-=======
-
-		this.editContact = new EditContact({contact: {}, toggleEditContact: this.toggleEditContact});
-
-		this.contactList = React.createRef();
-	}
-
-	toggleAddContact()
-	{
-		const addContact = document.getElementById('add-pop-up');
-
-		if (addContact.style.display === 'block')
-		{
-			addContact.style.display = 'none';
-			this.contactList.current.loadContacts();
-		}
-		else
-		{
-			addContact.style.display = 'block';
-		}
-	}
-
-	toggleEditContact(contact)
-	{
-		if (!contact)
-			return;
-
->>>>>>> Stashed changes
 		const editContactPopUp = document.getElementById('edit-pop-up');
-
 		if (editContactPopUp.style.display === 'block')
 		{
 			editContactPopUp.style.display = 'none';
@@ -97,7 +66,6 @@ class HomePage extends React.Component
 	render()
 	{
 		return (
-<<<<<<< Updated upstream
 			<div style={{display: 'block', position: 'fixed', width: '100vw', height: '100vh', overflow: 'auto'}}>
 				<div style={{display: 'flex', justifyContent: 'space-between', alignItem: 'center', position: 'fixed', width: '100vw'}}>
 					<input className='search-box' type='text' id='login' placeholder='search' onChange={(query) => this.searchContacts(query.target.value)}/>
@@ -107,15 +75,6 @@ class HomePage extends React.Component
 				</div>
 				<div style={{display: 'block', marginTop: '150px'}}>
 					<ContactList ref={this.contactList} toggleEditContact={this.toggleEditContact}/>
-=======
-			<div>
-				<div className='rButtons'>
-					<RButtons toggleAddContact={this.toggleAddContact}/>
-				</div>
-				<ContactList ref={this.contactList} toggleEditContact={this.toggleEditContact}/>
-				<div id='add-pop-up' style={{display: 'none', position: 'fixed', width: '100vw'}}>
-					<AddContact toggleAddContact={this.toggleAddContact}/>
->>>>>>> Stashed changes
 				</div>
 				<div id='add-pop-up' style={{display: 'none', position: 'fixed', top: '0px', left: '0px', width: '100vw'}}>
 					{this.addContact.render()}
