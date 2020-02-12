@@ -1,13 +1,20 @@
 .contact-list {
 	display: flex;
 	flex-direction: row;
+<<<<<<< Updated upstream
 	justify-content: flex-start;
+=======
+>>>>>>> Stashed changes
 	flex-wrap: wrap;
 	overflow: auto;
 }
 
 .contact-search {
+<<<<<<< Updated upstream
 	position: static;
+=======
+	position: absolute;
+>>>>>>> Stashed changes
 	display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
@@ -15,8 +22,12 @@
 }
 
 .search-box {
+<<<<<<< Updated upstream
 	display: inline-block;
 	border-color: #DDDDDD;
+=======
+	border-color: transparent;
+>>>>>>> Stashed changes
 	outline: none;
 	padding-left: 20px;
 	border-radius: 5px;
@@ -24,12 +35,20 @@
 	max-width: 70%;
 	height: 3em;
 	background-color: #FFFFFF;
+<<<<<<< Updated upstream
 	margin: 48px 20px 0px 20px;
 
 	border-style: solid;
+=======
+	margin: 20px 0px 0px 20px;
+>>>>>>> Stashed changes
 
 	font-family: 'Open Sans', verdana, arial, helvetica, sans-serif;
 	color: #757575;
 	font-weight: bold;
 	font-size: 14pt;
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes

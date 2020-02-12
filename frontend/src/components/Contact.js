@@ -64,6 +64,9 @@ class Contact extends React.Component
 	{
 		return (
 			<div key={this.key} style={{height: '370px'}}>
+=======
+			<div key={this.key}>
+>>>>>>> Stashed changes
 				<div id="contactCard">
 					<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:900"></link>
 					<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bree+Serif"></link>
