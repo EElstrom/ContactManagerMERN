@@ -63,6 +63,7 @@ class Contact extends React.Component
 	render()
 	{
 		return (
+<<<<<<< Updated upstream
 			<div key={this.key} style={{height: '370px'}}>
 =======
 			<div key={this.key}>
