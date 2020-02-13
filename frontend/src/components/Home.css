@@ -78,4 +78,5 @@
 .editDeleteContainer {
 	display: flex;
 	flex-direction: row-reverse;
+	margin: 10px 0px 0px 0px;
 }
