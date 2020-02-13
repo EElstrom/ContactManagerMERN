@@ -30,8 +30,6 @@ class AddContact extends React.Component
 			contact.phoneNumber = this.phoneNumber.value;
 		if (!isEmpty(this.email.value))
 			contact.email = this.email.value;
-		if (!isEmpty(this.address.value))
-			contact.address = this.address.value;
 		if (!isEmpty(this.company.value))
 			contact.company = this.company.value;
 		if (!isEmpty(this.title.value))
@@ -52,7 +50,6 @@ class AddContact extends React.Component
 			document.getElementById('lastname').value = '';
 			document.getElementById('phoneNumber').value = '';
 			document.getElementById('email').value = '';
-			document.getElementById('address').value = '';
 			document.getElementById('company').value = '';
 			document.getElementById('title').value = '';
 		}
