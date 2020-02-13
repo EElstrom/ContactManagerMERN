@@ -21,7 +21,7 @@ class HomePage extends React.Component
 		this.toggleEditContact = this.toggleEditContact.bind(this);
         this.showSuccess = this.showSuccess.bind(this);
         this.dismissToast = this.dismissToast.bind(this);
-
+                this.addContact = new AddContact({contact: {}, toggleAddContact: this.toggleAddContact, showSuccess: this.showSuccess});
 		this.editContact = new EditContact({contact: {}, toggleEditContact: this.toggleEditContact});
 
 		this.contactList = React.createRef();
