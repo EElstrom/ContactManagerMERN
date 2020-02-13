@@ -17,6 +17,7 @@ class Contact extends React.Component
 		this.lastname = (props.lastname) ? props.lastname : '';
 		this.phoneNumber = (props.phoneNumber) ? props.phoneNumber : '';
 		this.email = (props.email) ? props.email : '';
+		this.address = (props.address) ? props.address : '';
 		this.company = (props.company) ? props.company : '';
 		this.title = (props.title) ? props.title : '';
 	}
@@ -63,7 +64,7 @@ class Contact extends React.Component
 	render()
 	{
 		return (
-			<div key={this.key} style={{height: '370px'}}>
+			<div key={this.key} style={{height: '400px'}}>
 				<div id="contactCard">
 					<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:900"></link>
 					<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bree+Serif"></link>
@@ -71,6 +72,7 @@ class Contact extends React.Component
 					<div className="contactHeader">{this.firstname} {this.lastname}</div>
 					<div className="contactInfo">{this.phoneNumber}</div>
 					<div className="contactInfo">{this.email}</div>
+					<div className="contactInfo">{this.address}</div>
 					<div className="contactInfo">{this.company}</div>
 					<div className="contactInfo">{this.title}</div>
 					<div class="editDeleteContainer">
