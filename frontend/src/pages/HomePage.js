@@ -56,7 +56,6 @@ class HomePage extends React.Component
 			return;
 
 		const editContactPopUp = document.getElementById('edit-pop-up');
-
 		if (editContactPopUp.style.display === 'block')
 		{
 			editContactPopUp.style.display = 'none';
@@ -70,9 +69,11 @@ class HomePage extends React.Component
 		}
 	}
 
-	searchContacts()
+	searchContacts(query)
 	{
-		var query = '';
+		if (!query)
+			query = '';
+
 		this.contactList.current.loadContacts(query);
 	}
 
@@ -80,9 +81,11 @@ class HomePage extends React.Component
 	{
         const {toastV, toastMessage, toastType} = this.state;
 		return (
-			<div>
-				<div className='home-page' style={{position: 'fixed', display: 'flex', flexFlow: 'row nowrap', height: '100vh', width: '100vw'}}>
-					<div style={{position: 'static', height: '100vh'}}>
+			<div style={{display: 'block', position: 'fixed', width: '100vw', height: '100vh', overflow: 'auto'}}>
+				<div style={{display: 'flex', justifyContent: 'flex-start', alignItem: 'center', position: 'absolute', width: '100vw', left: '7%'}}>
+					{/*TODO: Add logo here?*/}
+					<input className='search-box' type='text' id='login' placeholder='search' onChange={(query) => this.searchContacts(query.target.value)}/>
+					<div className='rButtons'>
 						<RButtons toggleAddContact={this.toggleAddContact}/>
 					</div>
 					<div style={{position: 'static', height: '100vh', minWidth: '0'}}>
@@ -94,7 +97,10 @@ class HomePage extends React.Component
 				<div id='add-pop-up' style={{display: 'none', position: 'fixed', width: '100vw', height: '100vh'}}>
 					<AddContact toggleAddContact={this.toggleAddContact} showSuccess={this.showSuccess}/>
 				</div>
-				<div id='edit-pop-up' style={{display: 'none', position: 'fixed', width: '100vw', height: '100vh'}}>
+				<div id='add-pop-up' style={{display: 'none', position: 'fixed', top: '0px', left: '0px', width: '100vw'}}>
+					{this.addContact.render()}
+				</div>
+				<div id='edit-pop-up' style={{display: 'none', position: 'fixed', top: '0px', left: '0px', width: '100vw'}}>
 					{this.editContact.render()}
 				</div>
 
@@ -102,5 +108,4 @@ class HomePage extends React.Component
 		);
 	}
 }
-
 export default HomePage;
