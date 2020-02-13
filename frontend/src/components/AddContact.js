@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import Toast from './Toast.js'
 
 const fetch = require('node-fetch');
@@ -10,7 +10,6 @@ const isEmpty = require('is-empty');
 export default class AddContact extends React.Component {
 	constructor(props) {
 		super(props);
-		this.props = props;
 		this.state = {first: "",
                       last: "",
                       phone: "",
@@ -25,6 +24,7 @@ export default class AddContact extends React.Component {
 		this.handleChange = this.handleChange.bind(this);
         this.AddContacts = this.AddContacts.bind(this);
 		this.reset = this.reset.bind(this);
+        this.success_Handler = this.success_Handler.bind(this);
         this.onError = this.onError.bind(this);
         this.LEAVEMYSIGHT = this.LEAVEMYSIGHT.bind(this);
     }
@@ -38,6 +38,10 @@ export default class AddContact extends React.Component {
 
     LEAVEMYSIGHT(){
         this.setState({toastV: false});
+    }
+
+    success_Handler(msg){
+        this.props.showSuccess(msg);
     }
 
     handleChange(event){
@@ -101,10 +105,12 @@ export default class AddContact extends React.Component {
         }).then(response => {return response.json()});
 
         console.log(JSON.stringify(response));
-	if (response.success) {
-	    var succ = this.state.first + ' ' + this.state.last + ' added successfully!';
-            this.setState({message: succ});
+        if (response.success) {
+            var succ = this.state.first + ' ' + this.state.last + ' added successfully!';
+            //this.setState({message: succ});
+            
             this.reset();
+            this.success_Handler(succ);
         }
         else {
             var errors = response.errors;
