@@ -67,8 +67,7 @@ class HomePage extends React.Component
 	{
 		return (
 			<div style={{display: 'block', position: 'fixed', width: '100vw', height: '100vh', overflow: 'auto'}}>
-				<div style={{display: 'flex', justifyContent: 'flex-start', alignItem: 'center', position: 'absolute', width: '100vw', left: '7%'}}>
-					{/*TODO: Add logo here?*/}
+				<div style={{display: 'flex', justifyContent: 'flex-start', alignItem: 'center', position: 'absolute', width: '93%', left: '7%'}}>
 					<input className='search-box' type='text' id='login' placeholder='search' onChange={(query) => this.searchContacts(query.target.value)}/>
 					<div className='rButtons'>
 						<RButtons toggleAddContact={this.toggleAddContact}/>

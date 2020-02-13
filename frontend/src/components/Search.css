@@ -3,7 +3,7 @@
 	flex-direction: row;
 	justify-content: flex-start;
 	flex-wrap: wrap;
-	overflow: auto;
+	overflow: hidden;
 
 	position: absolute;
 	left: 7%;
