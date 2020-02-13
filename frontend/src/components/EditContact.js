@@ -18,7 +18,6 @@ class EditContact extends React.Component
 		contact.lastname = (!isEmpty(this.lastname.value)) ? this.lastname.value : '';
 		contact.phoneNumber = (!isEmpty(this.phoneNumber.value)) ? this.phoneNumber.value : '';
 		contact.email = (!isEmpty(this.email.value)) ? this.email.value : '';
-		contact.address = (!isEmpty(this.address.value)) ? this.address.value : '';
 		contact.company = (!isEmpty(this.company.value)) ? this.company.value : '';
 		contact.title = (!isEmpty(this.title.value)) ? this.title.value : '';
 
