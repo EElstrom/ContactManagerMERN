@@ -74,6 +74,8 @@ class AddContact extends React.Component
 						<input className='small-text-box' type="text" id="lastname" placeholder="last name" ref={(c) => this.lastname = c}/><br />
 						<input className='small-text-box' type="text" id="phoneNumber" placeholder="phone number" ref={(c) => this.phoneNumber = c}/><br />
 						<input className='small-text-box' type="text" id="email" placeholder="email address" ref={(c) => this.email = c}/><br />
+						<input className='small-text-box' type="text" id="company" placeholder="company" defaultValue={this.props.contact.company} ref={(c) => this.company = c}/><br />
+						<input className='small-text-box' type="text" id="address" placeholder="address" ref={(c) => this.address = c}/><br />
 						<input className='small-text-box' type="text" id="company" placeholder="company" ref={(c) => this.company = c}/><br />
 						<input className='small-text-box' type="text" id="title" placeholder="title" ref={(c) => this.title = c}/><br />
 						<input type="submit" id="button" className="buttons" value="Add"/>
