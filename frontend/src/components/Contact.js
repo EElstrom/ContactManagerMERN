@@ -72,7 +72,6 @@ class Contact extends React.Component
 					<div className="contactHeader">{this.firstname} {this.lastname}</div>
 					<div className="contactInfo">{this.phoneNumber}</div>
 					<div className="contactInfo">{this.email}</div>
-					<div className="contactInfo">{this.address}</div>
 					<div className="contactInfo">{this.company}</div>
 					<div className="contactInfo">{this.title}</div>
 					<div class="editDeleteContainer">
