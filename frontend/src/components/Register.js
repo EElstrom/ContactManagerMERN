@@ -1,130 +1,141 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Login.css';
-
+import Toast from './Toast.js'
 const fetch = require('node-fetch');
 
-function Register()
+export default class Register extends React.Component
 {
-	var username;
-	var firstname;
-	var lastname;
-	var email;
-	var password;
-	var password2;
-	
-	const [message,setMessage] = useState('');
-	
-	const [userBox, setUserBox] = useState('large-text-box');
-	const [firstnameBox, setFirstnameBox] = useState('large-text-box');
-	const [lastnameBox, setLastnameBox] = useState('large-text-box');
-	const [emailBox, setEmailBox] = useState('large-text-box');
-	const [passwordBox, setPasswordBox] = useState('large-text-box');
+    constructor(props) {
+        super(props);
+        
+        this.state = {userBox: 'large-text-box',
+            firstNameBox: 'large-text-box',
+            lastNameBox: 'large-text-box',
+            emailBox: 'large-text-box',
+            passwordBox: 'large-text-box',
+            toastV: false,
+            toastType: 'success',
+            toastMessage: ''};
 
-	const [userError, setUserError] = useState('');
-	const [firstnameError, setFirstnameError] = useState('');
-	const [lastnameError, setLastnameError] = useState('');
-	const [emailError, setEmailError] = useState('');
-	const [passwordError, setPasswordError] = useState('');
+        this.doRegister = this.doRegister.bind(this);
+        this.onDismiss = this.onDismiss.bind(this);
+        this.onSuccess = this.onSuccess.bind(this);
+        this.onError = this.onError.bind(this);
+    }
 
-	const doRegister = async event =>
-	{
-		event.preventDefault();
+    onDismiss() {
+        this.setState({toastV: false});
+    }
 
-		if (password.value !== password2.value)
-		{
-			setMessage('Password does not match');
-			setPasswordBox('large-error-box');
-			return;
-		}
+    onSuccess(msg){
+        this.setState({toastV: true,
+            toastMessage: msg,
+            toastType: 'success'});
+    }
 
-		username = username.value;
-		firstname = firstname.value;
-		lastname = lastname.value;
-		email = email.value;
-		password = password.value;
+    onError(msg) {
+        this.setState({toastV: true,
+            toastMessage: msg,
+            toastType: 'danger'});
+    }
 
-		const response = await fetch('api/register', {
-		  method: 'POST',
-		  headers: {'Content-Type': 'application/json'},
-		  body: JSON.stringify({
-		    username: username,
-		    password: password,
-		    firstname: firstname,
-		    lastname: lastname,
-		    email: email,
-		  })
-		}).then(response => {return response.json()});
+    async doRegister(event){
 
-		console.log(JSON.stringify(response));
-		
-		setUserBox('large-text-box');
-		setFirstnameBox('large-text-box');
-		setLastnameBox('large-text-box');
-		setEmailBox('large-text-box');
-		setPasswordBox('large-text-box');
+        var username;
+        var firstname;
+        var lastname;
+        var email;
+        var password;
 
-		setMessage('');
-		setUserError('');
-		setFirstnameError('');
-		setLastnameError('');
-		setEmailError('');
-		setPasswordError('');
+        event.preventDefault();
+        if (this.password.value !== this.password2.value)
+        {
+            this.onError('Password does not match');
+            this.setState({passwordBox: 'large-error-box'});
+            return;
+        }
 
-		if (response.success) {
-			setMessage('Registered');
-			// do registration magic here
-		}
-		else {
-			var errors = response.errors;
-			if (errors.username !== undefined) {
-				setUserBox('large-error-box');
-				setUserError(<span>{errors.username}<br /></span>);
-			}
-			if (errors.firstname !== undefined) {
-				setFirstnameBox('large-error-box');
-				setFirstnameError(<span>{errors.firstname}<br /></span>);
-			}
-			if (errors.lastname !== undefined) {
-				setLastnameBox('large-error-box');
-				setLastnameError(<span>{errors.lastname}<br /></span>);
-			}
-			if (errors.email !== undefined) {
-				setEmailBox('large-error-box');
-				setEmailError(<span>{errors.email}<br /></span>);
-			}
-			if (errors.password !== undefined) {
-				setPasswordBox('large-error-box');
-				setPasswordError(<span>{errors.password}<br /></span>);
-			}
-		}
+        username = this.username.value;
+        firstname = this.firstname.value;
+        lastname = this.lastname.value;
+        email = this.email.value;
+        password = this.password.value;
 
-	};
+        const response = await fetch('api/register', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            username: username,
+            password: password,
+            firstname: firstname,
+            lastname: lastname,
+            email: email,
+          })
+        }).then(response => {return response.json()});
 
-	return (
-		<div id="container">
-			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:900"></link>
-			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:800"></link>
-			<div id="header">Contact Manager</div>
-			<div id="login">
-				<form onSubmit={doRegister}>
-					<input className={userBox} type="text" id="username" placeholder="username" ref={(c) => username = c}/><br />
-					<input className={firstnameBox} type="text" id="firstname" placeholder="first name" ref={(c) => firstname = c}/><br />
-					<input className={lastnameBox} type="text" id="lastname" placeholder="last name" ref={(c) => lastname = c}/><br />
-					<input className={emailBox} type="text" id="email" placeholder="email address" ref={(c) => email = c}/><br />
-					<input className={passwordBox} type="password" id="password" placeholder="password" ref={(c) => password = c}/><br />
-					<input className={passwordBox} type="password" id="password" placeholder="confirm password" ref={(c) => password2 = c}/><br />
-					<input type="submit" id="loginButton" className="buttons" value="REGISTER"/>
-				</form>
-				<p>
-					<Link to="/login">Log in</Link><br />
-					<span id="result">{message}</span><br />
-					<span id="errors">{userError}{firstnameError}{lastnameError}{emailError}{passwordError}</span>
-				</p>
-			</div>
-		</div>
+        console.log(JSON.stringify(response));
 
-	);
-};
+        this.setState({userBox: 'large-text-box',
+            firstNameBox: 'large-text-box',
+            lastNameBox: 'large-text-box',
+            emailBox: 'large-text-box',
+            passwordBox: 'large-text-box'});
 
-export default Register;
+        if (response.success) {
+            window.location.replace('/login');
+            this.onSuccess('Successfully Registered!');
+            // do registration magic here
+        }
+        else {
+            var errors = response.errors;
+            if (errors.username !== undefined) {
+                this.setState({userBox: 'large-error-box'});
+                this.onError(errors.username);
+            }
+            if (errors.firstname !== undefined) {
+                this.setState({firstNameBox: 'large-error-box'});
+                this.onError(errors.firstname);
+            }
+            if (errors.lastname !== undefined) {
+                this.setState({lastNameBox: 'large-error-box'});
+                this.onError(errors.lastname);
+            }
+            if (errors.email !== undefined) {
+                this.setState({emailBox: 'large-error-box'});
+                this.onError(errors.email);
+            }
+            if (errors.password !== undefined) {
+                this.setState({passwordBox: 'large-error-box'});
+                this.onError(errors.password);
+            }
+        }
+    }
+
+    render() {
+        const {toastMessage, toastV, toastType, userBox, firstNameBox, lastNameBox, emailBox, passwordBox} = this.state;
+        return ( 
+                <div id="container">
+                    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:900"></link>
+                    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:800"></link>
+                    <div id="header">Contact Manager</div>
+                    <div id="login">
+                        <form onSubmit={this.doRegister}>
+                            <input className={userBox} type="text" id="username" placeholder="username" ref={(c) => this.username = c}/><br />
+                            <input className={firstNameBox} type="text" id="firstname" placeholder="first name" ref={(c) => this.firstname = c}/><br />
+                            <input className={lastNameBox} type="text" id="lastname" placeholder="last name" ref={(c) => this.lastname = c}/><br />
+                            <input className={emailBox} type="text" id="email" placeholder="email address" ref={(c) => this.email = c}/><br />
+                            <input className={passwordBox} type="password" id="password" placeholder="password" ref={(c) => this.password = c}/><br />
+                            <input className={passwordBox} type="password" id="password" placeholder="confirm password" ref={(c) => this.password2 = c}/><br />
+                            <input type="submit" id="loginButton" className="buttons" value="REGISTER"/>
+                        </form>
+                        <p>
+                            <Link to="/login">Log in</Link><br/>
+                        </p>
+                        <Toast showing={toastV} onDismiss={this.onDismiss} bsStyle={toastType}>{toastMessage}</Toast>
+                    </div>
+                </div>
+    
+            );
+    }
+}
