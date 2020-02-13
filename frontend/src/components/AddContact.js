@@ -1,96 +1,153 @@
-import React from 'react';
-import './ContactPopup.css';
+import React, {PropTypes} from 'react';
+import Toast from './Toast.js'
 
 const fetch = require('node-fetch');
 const isEmpty = require('is-empty');
 
-class AddContact extends React.Component
-{
-	constructor(props)
-	{
+//const [message, setMessage] = useState('');
+
+//I have no idea what I'm doing
+export default class AddContact extends React.Component {
+	constructor(props) {
 		super(props);
+		this.state = {first: "",
+                      last: "",
+                      phone: "",
+                      email: "",
+                      address: "",
+                      company: "",
+                      title: "",
+		              message: "",
+                      toastV: false,
+                      toastMessage: "",
+                      toastType: 'success'};
+		this.handleChange = this.handleChange.bind(this);
+        this.AddContacts = this.AddContacts.bind(this);
+		this.reset = this.reset.bind(this);
+        this.success_Handler = this.success_Handler.bind(this);
+        this.onError = this.onError.bind(this);
+        this.LEAVEMYSIGHT = this.LEAVEMYSIGHT.bind(this);
+    }
 
-		this.state = {
-			message: '',
-			errors: ''
-		};
-	}
+    onError(message) {
+        this.setState({
+            toastV: true,
+            toastMessage: message,
+            toastType: "danger"});
+    }
 
-	doAddContact = async event =>
-	{
-		event.preventDefault();
+    LEAVEMYSIGHT(){
+        this.setState({toastV: false});
+    }
 
-		const contact = {};
+    success_Handler(msg){
+        this.props.showSuccess(msg);
+    }
 
-		if (!isEmpty(this.firstname.value))
-			contact.firstname = this.firstname.value;
-		if (!isEmpty(this.lastname.value))
-			contact.lastname = this.lastname.value;
-		if (!isEmpty(this.phoneNumber.value))
-			contact.phoneNumber = this.phoneNumber.value;
-		if (!isEmpty(this.email.value))
-			contact.email = this.email.value;
-		if (!isEmpty(this.address.value))
-			contact.address = this.address.value;
-		if (!isEmpty(this.company.value))
-			contact.company = this.company.value;
-		if (!isEmpty(this.title.value))
-			contact.title = this.title.value;
+    handleChange(event){
+        const {name, value} = event.target; //Grab the name and value of each
+        this.setState({
+            [name] : value
+        });                                 //set each name to their respective value
+    }
 
-		const response = await fetch('api/addContact', {
-		  method: 'POST',
-		  headers: {'Content-Type': 'application/json'},
-		  credentials: 'same-origin',
-		  body: JSON.stringify(contact)
-		}).then(response => {return response.json()});
-		
-		if (response.success) {
-			this.setState({message: this.firstname.value + ' ' + this.lastname.value + ' added successfully!', errors: ''});
-			this.props.toggleAddContact();
+    reset(){
+        this.setState({first: "",
+            last: "",
+            phone: "",
+            email: "",
+            address: "",
+            company: "",
+            title:"",
+            message: "",
+            toastV: false,
+            toastMessage: "",
+            toastType: "success"});
+	this.myFormRef.reset();
+	this.props.toggleAddContact.call();
+    }
 
-			document.getElementById('firstname').value = '';
-			document.getElementById('lastname').value = '';
-			document.getElementById('phoneNumber').value = '';
-			document.getElementById('email').value = '';
-			document.getElementById('address').value = '';
-			document.getElementById('company').value = '';
-			document.getElementById('title').value = '';
-		}
-		else {
-			var errors = response.errors;
-			this.setState({message: '', errors: Object.values(errors)});
-		}
 
-	};
+    async AddContacts(event) {
+        //More sweet sweet goodness from original add_contact
+        event.preventDefault(); //What is this?
 
-	render()
-	{
-		return (
-			<div id="popupContainer">
-				<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:900"></link>
-				<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bree+Serif"></link>
-				<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:800"></link>
-				<div id="header">Add a new Contact</div>
-				<div id="contactPopup">
-					<form id="addForm" onSubmit={this.doAddContact}>
-						<input className='small-text-box' type="text" id="firstname" placeholder="first name" ref={(c) => this.firstname = c}/><br />
-						<input className='small-text-box' type="text" id="lastname" placeholder="last name" ref={(c) => this.lastname = c}/><br />
-						<input className='small-text-box' type="text" id="phoneNumber" placeholder="phone number" ref={(c) => this.phoneNumber = c}/><br />
-						<input className='small-text-box' type="text" id="email" placeholder="email address" ref={(c) => this.email = c}/><br />
-						<input className='small-text-box' type="text" id="address" placeholder="address" ref={(c) => this.address = c}/><br />
-						<input className='small-text-box' type="text" id="company" placeholder="company" ref={(c) => this.company = c}/><br />
-						<input className='small-text-box' type="text" id="title" placeholder="title" ref={(c) => this.title = c}/><br />
-						<input type="submit" id="button" className="buttons" value="Add"/>
-						<input type="reset" id="button" className="buttons" value="Cancel" onClick={() => this.props.toggleAddContact()}/>
-					</form>
-					<p>
-						<span id="result">{this.state.message}</span><br />
-            <span id="errors">{this.state.errors}</span>
-					</p>
-				</div>
-			</div>
-		);
-	}
-};
+	var firstname;
+	var lastname;
+	var phoneNumber;
+	var email;
+	var address;
+	var company;
+	var title;
 
-export default AddContact;
+        const contact = {};
+
+        if (!isEmpty(this.state.first))
+            contact.firstname = this.state.first;
+        if (!isEmpty(this.state.last))
+            contact.lastname = this.state.last;
+        if (!isEmpty(this.state.phone))
+            contact.phoneNumber = this.state.phone;
+        if (!isEmpty(this.state.email))
+            contact.email = this.state.email;
+        if (!isEmpty(this.state.address))
+            contact.address = this.state.address;
+        if (!isEmpty(this.state.company))
+            contact.company = this.state.company;
+        if (!isEmpty(this.state.title))
+            contact.title = this.state.title;
+
+        const response = await fetch('api/addContact', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            credentials: 'same-origin',
+            body: JSON.stringify(contact)
+        }).then(response => {return response.json()});
+
+        console.log(JSON.stringify(response));
+        if (response.success) {
+            var succ = this.state.first + ' ' + this.state.last + ' added successfully!';
+            //this.setState({message: succ});
+            
+            this.reset();
+            this.success_Handler(succ);
+        }
+        else {
+            var errors = response.errors;
+            this.onError(JSON.stringify(errors));
+        }
+    }
+
+    render() {
+        const {toastV, toastMessage, toastType} = this.state;
+        //That sweet sweet format from original AddContact
+        return(
+            <div id="container">
+                        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:900"></link>
+                        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:800"></link>
+                        <div id="header">Add a new Contact</div>
+                        <div id="login">
+                                <form ref={(el) => this.myFormRef = el} onSubmit={this.AddContacts}>
+                                        <input name="first" className='firstnameBox' type="text" id="firstname" placeholder="first name" value={this.state.name} onChange={this.handleChange}/><br />
+                                        <input name="last" className='lastnameBox' type="text" id="lastname" placeholder="last name" value={this.state.last} onChange={this.handleChange}/><br />
+                                        <input name="phone" className='phoneNumberBox' type="text" id="phoneNumber" placeholder="phone number" value={this.state.phone} onChange={this.handleChange}/><br />
+                                        <input name="email" className='emailBox' type="text" id="email" placeholder="email address" value={this.state.email} onChange={this.handleChange}/><br />
+                                        <input name="address" className='addressBox' type="text" id="address" placeholder="address" value={this.state.address} onChange={this.handleChange}/><br />
+                                        <input name="company" className='companyBox' type="text" id="company" placeholder="company" value={this.state.company} onChange={this.handleChange}/><br />
+                                        <input name="title" className='titleBox' type="text" id="title" placeholder="title" value={this.state.title} onChange={this.handleChange}/><br />
+                                        <input type="submit" id="button" className="buttons" value="ADD"/>
+                                        <input type="button" id="button" className="buttons" value="CANCEL" onClick={this.reset}/>
+                                </form>
+                                <p>
+                                        <span id="result">{this.state.message}</span><br />
+                                </p>
+                        </div>
+                        <Toast
+                            showing={toastV}
+                            onDismiss={this.LEAVEMYSIGHT}
+                            bsStyle={toastType}>{toastMessage}</Toast>
+                </div>
+
+        );
+    }
+}
