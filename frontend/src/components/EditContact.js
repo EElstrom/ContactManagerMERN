@@ -63,8 +63,8 @@ class EditContact extends React.Component
 						<input className='small-text-box' type="text" id="address" placeholder="address" defaultValue={this.props.contact.address} ref={(c) => this.address = c}/><br />
 						<input className='small-text-box' type="text" id="company" placeholder="company" defaultValue={this.props.contact.company} ref={(c) => this.company = c}/><br />
 						<input className='small-text-box' type="text" id="title" placeholder="title" defaultValue={this.props.contact.title} ref={(c) => this.title = c}/><br />
-						<input type="submit" id="button" className="buttons" value="EDIT"/>
-						<input type="button" id="button" className="buttons" value="CANCEL" onClick={() => this.props.toggleEditContact(this.props.contact)}/>
+						<input type="submit" id="button" className="buttons" value="Done"/>
+						<input type="button" id="button" className="buttons" value="Cancel" onClick={() => this.props.toggleEditContact(this.props.contact)}/>
 					</form>
 					<p>
 						<span id="result">{this.message}</span><br />
