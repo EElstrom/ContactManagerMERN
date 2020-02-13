@@ -4,6 +4,9 @@
 	justify-content: flex-start;
 	flex-wrap: wrap;
 	overflow: auto;
+
+	position: absolute;
+	left: 7%;
 }
 
 .contact-search {

@@ -73,10 +73,10 @@ class Contact extends React.Component
 					<div className="contactInfo">{this.email}</div>
 					<div className="contactInfo">{this.company}</div>
 					<div className="contactInfo">{this.title}</div>
-				</div>
-				<div>
-					<button id ='edit' style={{backgroundColor:'#4DA761', color:'#FFFFFF', marginLeft: '70%'}} onClick={() => this.props.toggleEditContact(this.props)}> EDIT </button>
-					<button id ='kill' style={{backgroundColor:'#4DA761', color:'#FFFFFF', marginLeft: '0%'}} onClick={() => this.deleteContact()}> DELETE </button>
+					<div class="editDeleteContainer">
+						<button id='edit' onClick={() => this.props.toggleEditContact(this.props)}> Edit </button>
+						<button id='delete' onClick={() => this.deleteContact()}> Delete </button>
+					</div>
 				</div>
 			</div>
 		);

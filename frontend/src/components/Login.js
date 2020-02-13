@@ -73,7 +73,7 @@ const Login = data =>
 					<form onSubmit={doLogin}>
 						<input className={userBox} type="text" id="username" placeholder="username" ref={(c) => loginName = c}/><br />
 						<input className={passwordBox} type="password" id="loginPassword" placeholder="password" ref={(c) => loginPassword = c}/><br />
-						<input type="submit" id="loginButton" className="buttons" value="SIGN IN"/>
+						<input type="submit" id="loginButton" className="buttons" value="Sign In"/>
 					</form>
 					<p>
 						<Link to="/register">Register a new account</Link><br />
