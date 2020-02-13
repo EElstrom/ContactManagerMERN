@@ -116,7 +116,7 @@ function Register()
 					<input className={emailBox} type="text" id="email" placeholder="email address" ref={(c) => email = c}/><br />
 					<input className={passwordBox} type="password" id="password" placeholder="password" ref={(c) => password = c}/><br />
 					<input className={passwordBox} type="password" id="password" placeholder="confirm password" ref={(c) => password2 = c}/><br />
-					<input type="submit" id="loginButton" className="buttons" value="REGISTER"/>
+					<input type="submit" id="loginButton" className="buttons" value="Register"/>
 				</form>
 				<p>
 					<Link to="/login">Log in</Link><br />

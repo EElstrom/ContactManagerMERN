@@ -80,8 +80,8 @@ class AddContact extends React.Component
 						<input className='small-text-box' type="text" id="address" placeholder="address" ref={(c) => this.address = c}/><br />
 						<input className='small-text-box' type="text" id="company" placeholder="company" ref={(c) => this.company = c}/><br />
 						<input className='small-text-box' type="text" id="title" placeholder="title" ref={(c) => this.title = c}/><br />
-						<input type="submit" id="button" className="buttons" value="ADD"/>
-						<input type="reset" id="button" className="buttons" value="CANCEL" onClick={() => this.props.toggleAddContact()}/>
+						<input type="submit" id="button" className="buttons" value="Add"/>
+						<input type="reset" id="button" className="buttons" value="Cancel" onClick={() => this.props.toggleAddContact()}/>
 					</form>
 					<p>
 						<span id="result">{this.state.message}</span><br />
