@@ -18,7 +18,6 @@ class EditContact extends React.Component
 		contact.lastname = (!isEmpty(this.lastname.value)) ? this.lastname.value : '';
 		contact.phoneNumber = (!isEmpty(this.phoneNumber.value)) ? this.phoneNumber.value : '';
 		contact.email = (!isEmpty(this.email.value)) ? this.email.value : '';
-		contact.address = (!isEmpty(this.address.value)) ? this.address.value : '';
 		contact.company = (!isEmpty(this.company.value)) ? this.company.value : '';
 		contact.title = (!isEmpty(this.title.value)) ? this.title.value : '';
 
@@ -60,7 +59,6 @@ class EditContact extends React.Component
 						<input className='small-text-box' type="text" id="lastname" placeholder="last name" defaultValue={this.props.contact.lastname} ref={(c) => this.lastname = c}/><br />
 						<input className='small-text-box' type="text" id="phoneNumber" placeholder="phone number" defaultValue={this.props.contact.phoneNumber} ref={(c) => this.phoneNumber = c}/><br />
 						<input className='small-text-box' type="text" id="email" placeholder="email address" defaultValue={this.props.contact.email} ref={(c) => this.email = c}/><br />
-						<input className='small-text-box' type="text" id="address" placeholder="address" defaultValue={this.props.contact.address} ref={(c) => this.address = c}/><br />
 						<input className='small-text-box' type="text" id="company" placeholder="company" defaultValue={this.props.contact.company} ref={(c) => this.company = c}/><br />
 						<input className='small-text-box' type="text" id="title" placeholder="title" defaultValue={this.props.contact.title} ref={(c) => this.title = c}/><br />
 						<input type="submit" id="button" className="buttons" value="Done"/>
